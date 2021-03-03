@@ -1,6 +1,15 @@
 {
+    "editor.formatOnSave": true,
+    "editor.detectIndentation": false,
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+    "stylelint.validate": [
+        "css",
+        "sass",
+        "scss",
+    ],
     "cSpell.words": [
         "TTFB",
-        "browserslist"
+        "browserslist",
+        "stylelint"
     ]
 }
