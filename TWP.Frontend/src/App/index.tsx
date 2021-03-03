@@ -1,3 +1,5 @@
+import "styles/reset.scss";
+
 const App = () => {
     return <div className="App">App</div>;
 };
