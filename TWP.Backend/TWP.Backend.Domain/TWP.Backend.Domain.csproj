@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
@@ -10,9 +10,5 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.7" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TWP.Backend.Infrastructure\TWP.Backend.Infrastructure.csproj" />
   </ItemGroup>
 </Project>
