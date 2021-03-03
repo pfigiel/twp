@@ -1,5 +1,6 @@
 {
     "printWidth": 120,
     "tabWidth": 4,
-    "jsxBracketSameLine": true
+    "jsxBracketSameLine": true,
+    "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"]
 }

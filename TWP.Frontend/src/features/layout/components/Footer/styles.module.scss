@@ -1,0 +1,22 @@
+@import "~styles/variables.scss";
+
+.footer {
+    width: 100%;
+
+    &__top-part,
+    &__bottom-part {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__top-part {
+        height: 3em;
+        background: $color-primary;
+    }
+
+    &__bottom-part {
+        height: 2em;
+        background: $color-quaternary;
+    }
+}

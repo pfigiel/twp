@@ -1,0 +1,16 @@
+@import "~styles/variables.scss";
+
+.content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: calc(100vh - #{$header-height} - #{$footer-height});
+    background: $color-page-background;
+
+    &__middle-section {
+        width: 100%;
+        max-width: $tablet-width-breakpoint;
+        background: $color-page-content;
+        box-shadow: $shadow-primary;
+    }
+}
