@@ -1,12 +1,15 @@
 import Page from "features/layout/components/Page";
-import React from "react";
+import RouterSwitch from "features/routing/components/RouterSwitch";
+import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
     return (
-        <div className="App">
-            <Page>
-                <span>Test</span>
-            </Page>
+        <div>
+            <BrowserRouter>
+                <Page>
+                    <RouterSwitch />
+                </Page>
+            </BrowserRouter>
         </div>
     );
 };

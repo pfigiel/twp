@@ -1,0 +1,36 @@
+@import "~styles/mixins.scss";
+
+.landing-page {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background: $color-page-background;
+
+    &__content {
+        width: 100%;
+        max-width: $tablet-breakpoint-width;
+    }
+
+    &__header-tile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5rem 1rem;
+        background: $color-primary;
+
+        > * {
+            text-align: center;
+        }
+    }
+
+    &__header-primary {
+        margin-bottom: 1rem;
+        color: $color-quaternary;
+    }
+
+    &__header-secondary {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: $color-secondary;
+    }
+}
