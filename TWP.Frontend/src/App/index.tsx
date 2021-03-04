@@ -1,6 +1,5 @@
 import Page from "features/layout/components/Page";
 import React from "react";
-import "styles/reset.scss";
 
 const App = () => {
     return (

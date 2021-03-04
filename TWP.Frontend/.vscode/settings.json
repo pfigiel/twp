@@ -18,5 +18,13 @@
     "[scss]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "cSpell.words": ["TTFB", "browserslist", "chromeframe", "healthcheck", "stylelint", "trivago"]
+    "cSpell.words": [
+        "TTFB",
+        "browserslist",
+        "chromeframe",
+        "healthcheck",
+        "mixins",
+        "stylelint",
+        "trivago"
+    ]
 }
