@@ -25,6 +25,7 @@
         "healthcheck",
         "mixins",
         "stylelint",
+        "testid",
         "trivago"
     ]
 }

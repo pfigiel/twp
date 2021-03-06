@@ -1,8 +1,18 @@
 @import "~styles/variables.scss";
 
 .header {
-    height: 3em;
-    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
     background: $color-primary;
     box-shadow: $shadow-primary;
+    height: 3em;
+    width: 100%;
+    padding: 0 2rem;
+
+    &__brand {
+        text-decoration: none;
+        color: $color-page-content;
+        font-weight: 700;
+    }
 }

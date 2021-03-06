@@ -1,0 +1,14 @@
+@import "~styles/mixins.scss";
+
+.button {
+    border: none;
+    background: $color-secondary;
+    height: 3rem;
+    padding: 0 2rem;
+
+    &--secondary {
+        color: $color-primary;
+        background: $color-page-content;
+        border: 1px solid $color-primary;
+    }
+}

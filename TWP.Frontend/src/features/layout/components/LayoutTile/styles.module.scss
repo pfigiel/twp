@@ -1,0 +1,9 @@
+@import "~styles/mixins.scss";
+
+.layout-tile {
+    box-shadow: none;
+
+    @include desktop() {
+        box-shadow: $shadow-primary;
+    }
+}

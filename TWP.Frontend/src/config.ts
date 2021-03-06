@@ -6,6 +6,7 @@ const config = {
     appRoutes: {
         dashboard: "/dashboard",
         landingPage: "/",
+        songs: "/songs",
     },
 };
 

@@ -1,21 +1,24 @@
 @import "~styles/mixins.scss";
 
 .content {
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
+    background: $color-page-background;
     width: 100%;
     min-height: calc(100vh - #{$header-height} - #{$footer-height});
-    background: $color-page-background;
+    padding: 1rem;
+
+    @include tablet() {
+        padding: 1.5rem;
+    }
+
+    @include desktop() {
+        padding: 2rem;
+    }
 
     &__middle-section {
         width: 100%;
-        padding: 1em;
-        max-width: $tablet-breakpoint-width;
-
-        @include tablet() {
-        }
-
-        @include desktop() {
-        }
+        max-width: $max-content-width;
     }
 }

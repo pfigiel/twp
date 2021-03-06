@@ -1,0 +1,21 @@
+@import "~styles/mixins.scss";
+
+.tile {
+    box-sizing: border-box;
+    background: $color-page-content;
+    box-shadow: $shadow-primary;
+    padding: 1rem;
+
+    @include tablet() {
+        padding: 1.5rem;
+    }
+
+    @include desktop() {
+        padding: 2rem;
+    }
+
+    &--clickable:hover {
+        cursor: pointer;
+        box-shadow: $shadow-primary-strong;
+    }
+}

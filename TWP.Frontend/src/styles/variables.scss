@@ -6,9 +6,11 @@ $color-page-background: #f4f8fb;
 $color-page-content: #fff;
 
 $shadow-primary: 0 0 10px rgba($color-primary, 0.25);
+$shadow-primary-strong: 0 0 10px rgba($color-primary, 0.5);
 
 $header-height: 3em;
 $footer-height: 5em;
 
 $smartphone-breakpoint-width: 641px;
 $tablet-breakpoint-width: 1025px;
+$max-content-width: 1280px;
