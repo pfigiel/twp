@@ -2,13 +2,13 @@
 
 .button {
     border: none;
-    background: $color-secondary;
+    background: $color-yellow;
     height: 3rem;
     padding: 0 2rem;
 
     &--secondary {
-        color: $color-primary;
-        background: $color-page-content;
-        border: 1px solid $color-primary;
+        color: $color-dark-blue;
+        background: $color-white;
+        border: 1px solid $color-dark-blue;
     }
 }

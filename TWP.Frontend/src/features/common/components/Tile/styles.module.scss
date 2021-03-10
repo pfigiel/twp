@@ -2,8 +2,8 @@
 
 .tile {
     box-sizing: border-box;
-    background: $color-page-content;
-    box-shadow: $shadow-primary;
+    background: $color-white;
+    box-shadow: $shadow-dark-blue;
     padding: 1rem;
 
     @include tablet() {
@@ -16,6 +16,6 @@
 
     &--clickable:hover {
         cursor: pointer;
-        box-shadow: $shadow-primary-strong;
+        box-shadow: $shadow-dark-blue-strong;
     }
 }

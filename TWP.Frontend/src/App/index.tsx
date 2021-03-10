@@ -1,17 +1,8 @@
-import Page from "features/layout/components/Page";
-import RouterSwitch from "features/routing/components/RouterSwitch";
-import { BrowserRouter } from "react-router-dom";
+import { selectLocale } from "features/common/selectors";
+import { connect } from "react-redux";
+import { RootState } from "store";
+import App from "./component";
 
-const App = () => {
-    return (
-        <div>
-            <BrowserRouter>
-                <Page>
-                    <RouterSwitch />
-                </Page>
-            </BrowserRouter>
-        </div>
-    );
-};
+const mapStateToProps = (state: RootState) => ({ locale: selectLocale(state) });
 
-export default App;
+export default connect(mapStateToProps)(App);

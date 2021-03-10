@@ -3,16 +3,64 @@
 .header {
     box-sizing: border-box;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    background: $color-primary;
-    box-shadow: $shadow-primary;
+    background: $color-dark-blue;
+    box-shadow: $shadow-dark-blue;
     height: 3em;
     width: 100%;
     padding: 0 2rem;
 
     &__brand {
         text-decoration: none;
-        color: $color-page-content;
+        color: $color-white;
         font-weight: 700;
+    }
+
+    &__language-dropdown {
+        width: 4.5rem;
+    }
+
+    &__language-dropdown-toggle,
+    &__language-dropdown-option {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.5rem 1rem;
+    }
+
+    &__language-dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+
+        & > * {
+            color: $color-white;
+        }
+    }
+
+    &__language-dropdown-toggle-icon {
+        transform: rotate(0deg);
+        transition: transform $transition-time;
+
+        &--rotated {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__language-dropdown-options {
+        background: $color-white;
+        box-shadow: $shadow-dark-blue;
+    }
+
+    &__language-dropdown-option {
+        background: $color-white;
+
+        &--selected {
+            font-weight: 400;
+            color: $color-dark-blue;
+        }
+
+        &:hover {
+            background: $color-pale-blue;
+        }
     }
 }

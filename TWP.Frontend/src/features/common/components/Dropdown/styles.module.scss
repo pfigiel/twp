@@ -1,0 +1,29 @@
+@import "~styles/variables.scss";
+
+.dropdown {
+    z-index: $dropdown-z-index;
+
+    &__toggle,
+    &__option {
+        cursor: pointer;
+    }
+
+    &__options-container {
+        width: 0;
+        height: 0;
+    }
+
+    &__options {
+        box-sizing: border-box;
+        min-width: fit-content;
+        min-height: fit-content;
+        transform: scale(1);
+        opacity: 1;
+        transition: transform $transition-time, opacity $transition-time;
+
+        &--hidden {
+            transform: scale(0);
+            opacity: 0;
+        }
+    }
+}

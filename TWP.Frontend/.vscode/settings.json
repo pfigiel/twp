@@ -22,10 +22,14 @@
         "TTFB",
         "browserslist",
         "chromeframe",
+        "fontawesome",
+        "fortawesome",
         "healthcheck",
+        "immer",
         "mixins",
         "stylelint",
         "testid",
-        "trivago"
+        "trivago",
+        "typesafe"
     ]
 }

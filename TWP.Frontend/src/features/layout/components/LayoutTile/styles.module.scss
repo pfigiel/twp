@@ -4,6 +4,6 @@
     box-shadow: none;
 
     @include desktop() {
-        box-shadow: $shadow-primary;
+        box-shadow: $shadow-dark-blue;
     }
 }

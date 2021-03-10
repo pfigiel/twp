@@ -1,12 +1,17 @@
-import config from "config";
-import styles from "./styles.module.scss";
+import { setLocale } from "features/common/actions";
+import { selectLocale } from "features/common/selectors";
+import { Locale } from "features/common/types";
+import Header from "features/layout/components/Header/component";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { bindActionCreators } from "redux";
+import { RootState } from "store";
 
-const Header = () => (
-    <div className={styles["header"]}>
-        <a className={styles["header__brand"]} href={config.appRoutes.landingPage}>
-            Lorem
-        </a>
-    </div>
-);
+const mapStateToProps = (state: RootState) => ({
+    locale: selectLocale(state),
+});
 
-export default Header;
+const mapDispatchToProps = (dispatch: Dispatch) =>
+    bindActionCreators({ setLocale: (locale: Locale) => setLocale(locale) }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
