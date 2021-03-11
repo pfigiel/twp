@@ -30,6 +30,7 @@
         "stylelint",
         "testid",
         "trivago",
-        "typesafe"
+        "typesafe",
+        "unmount"
     ]
 }

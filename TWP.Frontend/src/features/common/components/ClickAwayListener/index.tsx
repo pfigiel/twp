@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import ReactClickAwayListener from "react-click-away-listener";
 
-interface Props {
+export interface Props {
     children: ReactElement;
     onClickAway: () => void;
 }
