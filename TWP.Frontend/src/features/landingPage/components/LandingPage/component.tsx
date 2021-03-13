@@ -8,16 +8,17 @@ import { Locale } from "features/common/types";
 import messages from "features/landingPage/translations";
 import Footer from "features/layout/components/Footer";
 import { useIntl } from "react-intl";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { loremIpsum } from "tests/utils";
 import styles from "./styles.module.scss";
 
-interface Props {
+export interface Props {
+    ["data-testid"]?: string;
     locale: Locale;
     setLocale: (locale: Locale) => void;
 }
 
-const LandingPage = ({ locale, setLocale }: Props) => {
+const LandingPage = ({ "data-testid": testId = "landing-page", locale, setLocale }: Props) => {
     const intl = useIntl();
     const history = useHistory();
 
@@ -28,6 +29,7 @@ const LandingPage = ({ locale, setLocale }: Props) => {
                     <img className={styles["landing-page__header-tile-image"]} src={landingPageBackground} alt="" />
                     <div className={styles["landing-page__header-tile-language-links"]}>
                         <span
+                            data-testid={`${testId}__en-locale-button`}
                             className={classNames(styles["landing-page__header-tile-language-link"], {
                                 [styles["landing-page__header-tile-language-link--active"]]: locale === "en",
                             })}
@@ -35,6 +37,7 @@ const LandingPage = ({ locale, setLocale }: Props) => {
                             EN
                         </span>
                         <span
+                            data-testid={`${testId}__pl-locale-button`}
                             className={classNames(styles["landing-page__header-tile-language-link"], {
                                 [styles["landing-page__header-tile-language-link--active"]]: locale === "pl",
                             })}
@@ -48,6 +51,7 @@ const LandingPage = ({ locale, setLocale }: Props) => {
                             {getTranslatedMessage(messages.titleSecondary, intl)}
                         </h2>
                         <Button
+                            data-testid={`${testId}__go-to-dashboard-button`}
                             className={styles["landing-page__button"]}
                             variant="secondary"
                             onClick={() => history.push(config.appRoutes.dashboard)}>

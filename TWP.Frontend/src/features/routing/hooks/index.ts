@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 export const useCurrentRoute = () => {
     const history = useHistory();
@@ -9,7 +9,7 @@ export const useCurrentRoute = () => {
         const stopListening = history.listen((listener) => setRoute(listener.pathname));
 
         return () => stopListening();
-    });
+    }, [history]);
 
     return route;
 };

@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 
 type ButtonVariant = "primary" | "secondary";
 
-interface Props {
+export interface Props {
     ["data-testid"]?: string;
     className?: string;
     children: ReactElement | ReactElement[] | string;

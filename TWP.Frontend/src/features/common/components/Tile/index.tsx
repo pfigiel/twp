@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { ReactElement } from "react";
 import styles from "./styles.module.scss";
 
-type Props = {
+export type Props = {
     ["data-testid"]?: string;
     className?: string;
     children: ReactElement | ReactElement[];

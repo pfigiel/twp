@@ -1,6 +1,8 @@
 import { fireEvent } from "@testing-library/dom";
+import { getMessages } from "intl";
 import { ReactElement } from "react";
 import { act } from "react-dom/test-utils";
+import { IntlProvider } from "react-intl";
 import { Provider } from "react-redux";
 import store from "store";
 
@@ -9,7 +11,18 @@ export const loremIpsum =
 
 export const withReduxProvider = (children: ReactElement) => <Provider store={store()}>{children}</Provider>;
 
-export const actClick = (target: Document | Node | Element | Window) =>
+export const withIntlProvider = (children: ReactElement) => (
+    <IntlProvider locale="pl" messages={getMessages("pl")}>
+        {children}
+    </IntlProvider>
+);
+
+export const fireClickEvent = (target: Document | Node | Element | Window) =>
     act(() => {
         fireEvent.click(target);
+    });
+
+export const fireWindowResizeEvent = () =>
+    act(() => {
+        window.dispatchEvent(new Event("resize"));
     });

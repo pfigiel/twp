@@ -1,17 +1,26 @@
-import { setLocale } from "features/common/actions";
-import { selectLocale } from "features/common/selectors";
-import { Locale } from "features/common/types";
-import Header from "features/layout/components/Header/component";
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { bindActionCreators } from "redux";
-import { RootState } from "store";
+import config from "config";
+import { useHistory } from "react-router-dom";
+import LocaleDropdown from "./LocaleDropdown";
+import styles from "./styles.module.scss";
 
-const mapStateToProps = (state: RootState) => ({
-    locale: selectLocale(state),
-});
+interface Props {
+    ["data-testid"]?: string;
+}
 
-const mapDispatchToProps = (dispatch: Dispatch) =>
-    bindActionCreators({ setLocale: (locale: Locale) => setLocale(locale) }, dispatch);
+const Header = ({ "data-testid": testId = "header" }: Props) => {
+    const history = useHistory();
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+    return (
+        <header className={styles["header"]}>
+            <div
+                data-testid={`${testId}__brand`}
+                className={styles["header__brand"]}
+                onClick={() => history.push(config.appRoutes.landingPage)}>
+                Lorem
+            </div>
+            <LocaleDropdown />
+        </header>
+    );
+};
+
+export default Header;

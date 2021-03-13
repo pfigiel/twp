@@ -52,9 +52,8 @@ const Dropdown = <T extends unknown>({
     };
 
     const onLocalSelect = (value: T) => {
-        onSelect(value);
-        setExpanded(false);
         onLocalToggle(false);
+        onSelect(value);
     };
 
     useEffect(() => {
@@ -67,8 +66,9 @@ const Dropdown = <T extends unknown>({
 
     return (
         <ClickAwayListener onClickAway={() => onLocalToggle(false)}>
-            <div className={classNames(styles["dropdown"], className)}>
+            <div data-testid={testId} className={classNames(styles["dropdown"], className)}>
                 <div
+                    data-testid={`${testId}__toggle`}
                     className={classNames(styles["dropdown__toggle"], toggleClassName)}
                     ref={toggleRef}
                     onClick={() => onLocalToggle(!expanded)}>
@@ -76,6 +76,7 @@ const Dropdown = <T extends unknown>({
                 </div>
                 <div className={styles["dropdown__options-container"]}>
                     <div
+                        data-testid={`${testId}__options`}
                         className={classNames(
                             styles["dropdown__options"],
                             { [styles["dropdown__options--hidden"]]: !expanded },
@@ -85,6 +86,7 @@ const Dropdown = <T extends unknown>({
                         {options.map((option) => (
                             <div
                                 key={`${option.value}`}
+                                data-testid={`${testId}__option`}
                                 className={classNames(
                                     styles["dropdown__option"],
                                     option.value === selectedOption?.value && selectedOptionClassName,

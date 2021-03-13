@@ -5,15 +5,16 @@ import Header from "features/layout/components/Header";
 import { useCurrentRoute } from "features/routing/hooks";
 import React, { ReactElement } from "react";
 
-interface Props {
+export interface Props {
+    ["data-testid"]?: string;
     children: ReactElement;
 }
 
-const Page = ({ children }: Props) => {
+const Page = ({ "data-testid": testId = "page", children }: Props) => {
     const currentRoute = useCurrentRoute();
 
     return currentRoute !== config.appRoutes.landingPage ? (
-        <div>
+        <div data-testid={testId}>
             <Header />
             <Content>{children}</Content>
             <Footer />

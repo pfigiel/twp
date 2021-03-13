@@ -1,0 +1,48 @@
+@import "~styles/variables.scss";
+
+.locale-dropdown {
+    width: 4.5rem;
+
+    &__toggle,
+    &__option {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.5rem 1rem;
+    }
+
+    &__toggle {
+        display: flex;
+        justify-content: space-between;
+
+        & > * {
+            color: $color-white;
+        }
+    }
+
+    &__toggle-icon {
+        transform: rotate(0deg);
+        transition: transform $transition-time;
+
+        &--rotated {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__options {
+        background: $color-white;
+        box-shadow: $shadow-dark-blue;
+    }
+
+    &__option {
+        background: $color-white;
+
+        &--selected {
+            font-weight: 400;
+            color: $color-dark-blue;
+        }
+
+        &:hover {
+            background: $color-pale-blue;
+        }
+    }
+}

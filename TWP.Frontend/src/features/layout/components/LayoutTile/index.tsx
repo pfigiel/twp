@@ -1,7 +1,7 @@
 import Tile from "features/common/components/Tile";
 import { ReactElement } from "react";
 
-interface Props {
+export interface Props {
     children: ReactElement | ReactElement[];
 }
 
