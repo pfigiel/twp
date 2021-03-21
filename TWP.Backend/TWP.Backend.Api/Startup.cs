@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TWP.Backend.Api.Configurations;
+using TWP.Backend.Infrastructure;
+using TWP.Backend.Infrastructure.Database;
 
 namespace TWP.Backend.Api
 {
@@ -30,9 +33,12 @@ namespace TWP.Backend.Api
             services.AddSwaggerGen();
 
             services.AddApiDependencies(Configuration);
+            services.AddInfrastructureDependencies(Configuration);
 
             services.AddCors(setupAction => setupAction.AddPolicy(_developmentCorsPolicy, options =>
                 options.WithOrigins(configuration.ClientApp.Origin).AllowAnyMethod().AllowAnyHeader()));
+
+            services.AddDbContext<DomainContext>(options => options.UseSqlServer(configuration.Database.ConnectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

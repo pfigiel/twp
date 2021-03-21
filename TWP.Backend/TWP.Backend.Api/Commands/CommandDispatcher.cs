@@ -7,11 +7,13 @@ namespace TWP.Backend.Api.Commands
     public class CommandDispatcher : ICommandDispatcher
     {
         private readonly IServiceProvider _serviceProvider;
+        private readonly IDatabaseContextProvider _databaseContextProvider;
         private readonly ICancellationTokenProvider _cancellationTokenProvider;
 
-        public CommandDispatcher(IServiceProvider serviceProvider, ICancellationTokenProvider cancellationTokenProvider)
+        public CommandDispatcher(IServiceProvider serviceProvider, IDatabaseContextProvider databaseContextProvider, ICancellationTokenProvider cancellationTokenProvider)
         {
             _serviceProvider = serviceProvider;
+            _databaseContextProvider = databaseContextProvider;
             _cancellationTokenProvider = cancellationTokenProvider;
         }
 
@@ -32,7 +34,10 @@ namespace TWP.Backend.Api.Commands
 
             var cancellationToken = _cancellationTokenProvider.GetCancellationToken();
 
+            await using var transaction = await _databaseContextProvider.BeginTransactionAsync(cancellationToken);
             await handler.ExecuteAsync(command, cancellationToken);
+            await _databaseContextProvider.SaveChangesAsync(cancellationToken);
+            await transaction.CommitAsync(cancellationToken);
         }
     }
 }
