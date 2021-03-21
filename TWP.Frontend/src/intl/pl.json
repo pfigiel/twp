@@ -2,6 +2,10 @@
     "landing-page__title-secondary": "Otwarta baza danych piosenek uwielbieniowych",
     "landing-page__go-to-dashboard": "Przejdź do tablicy",
     "footer__contact-us": "Napisz do nas",
-    "footer__privacy-policy": "Polityka prywatności",
-    "footer__regulations": "Regulamin"
+    "common__privacy-policy": "Polityka prywatności",
+    "common__regulations": "Regulamin",
+    "common__dashboard": "Tablica",
+    "common__my-collections": "Moje kolekcje",
+    "common__song-creator": "Kreator piosenek",
+    "common__songs": "Piosenki"
 }

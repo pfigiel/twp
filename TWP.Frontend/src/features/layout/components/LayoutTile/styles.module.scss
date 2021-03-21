@@ -3,7 +3,16 @@
 .layout-tile {
     box-shadow: none;
 
+    &:not(:last-child) {
+        border-bottom: 1px solid rgba($color-dark-blue, 0.5);
+    }
+
     @include desktop() {
         box-shadow: $shadow-dark-blue;
+
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+            border-bottom: none;
+        }
     }
 }

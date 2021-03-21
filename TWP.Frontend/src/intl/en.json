@@ -2,6 +2,10 @@
     "landing-page__title-secondary": "Open worship songs database",
     "landing-page__go-to-dashboard": "Go to dashboard",
     "footer__contact-us": "Contact us",
-    "footer__privacy-policy": "Privacy policy",
-    "footer__regulations": "Regulations"
+    "common__privacy-policy": "Privacy policy",
+    "common__regulations": "Regulations",
+    "common__dashboard": "Dashboard",
+    "common__my-collections": "My collections",
+    "common__song-creator": "Song creator",
+    "common__songs": "Songs"
 }

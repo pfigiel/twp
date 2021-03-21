@@ -17,6 +17,8 @@
         box-sizing: border-box;
         min-width: fit-content;
         min-height: fit-content;
+        background: $color-white;
+        box-shadow: $shadow-dark-blue;
         transform: scale(1);
         opacity: 1;
         transition: transform $transition-time, opacity $transition-time;

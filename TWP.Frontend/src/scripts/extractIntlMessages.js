@@ -50,34 +50,37 @@ for (const locale of locales) {
     const addedIds = [];
     const removedIds = [];
 
-    for (const translationId of translationIds) {
-        if (!existingMessageIds.includes(translationId)) {
-            existingMessages.push({ id: translationId, message: "" });
-            addedIds.push(translationId);
+    for (const translationId of existingMessageIds) {
+        if (!translationIds.includes(translationId)) {
+            const indexOfMessageToRemove = existingMessages.indexOf(
+                existingMessages.find((message) => message.id === translationId)
+            );
+
+            if (indexOfMessageToRemove >= 0) {
+                existingMessages.splice(indexOfMessageToRemove, 1);
+                removedIds.push(translationId);
+            }
         }
     }
 
-    for (const translationId of existingMessageIds) {
-        if (!translationIds.includes(translationId)) {
-            existingMessages.splice(
-                existingMessages.indexOf((message) => message.id === translationId),
-                1
-            );
-            removedIds.push(translationId);
+    for (const translationId of translationIds) {
+        if (!existingMessages.map((message) => message.id).includes(translationId)) {
+            existingMessages.push({ id: translationId, message: "" });
+            addedIds.push(translationId);
         }
     }
 
     if (addedIds.length || removedIds.length) {
         console.log(`\n${locale}`);
 
-        if (addedIds.length) {
-            console.log(`  Added ${addedIds.length} empty translations:`);
-            addedIds.map((id) => console.log(`    ${id}`));
-        }
-
         if (removedIds.length) {
             console.log(`  Removed ${removedIds.length} translations:`);
             removedIds.map((id) => console.log(`    ${id}`));
+        }
+
+        if (addedIds.length) {
+            console.log(`  Added ${addedIds.length} empty translations:`);
+            addedIds.map((id) => console.log(`    ${id}`));
         }
     }
 
