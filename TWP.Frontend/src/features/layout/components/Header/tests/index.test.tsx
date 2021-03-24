@@ -29,7 +29,7 @@ describe("layout", () => {
                 const { getByTestId } = renderComponent();
 
                 // then
-                expect(getByTestId(`${testId}__brand`)).toBeInTheDocument();
+                expect(getByTestId(`${testId}__logo`)).toBeInTheDocument();
             });
 
             each(["smartphone", "tablet"]).it("Should not render brand on %p.", (deviceClass: DeviceClass) => {
@@ -40,7 +40,7 @@ describe("layout", () => {
                 const { queryByTestId } = renderComponent();
 
                 // then
-                expect(queryByTestId(`${testId}__brand`)).not.toBeInTheDocument();
+                expect(queryByTestId(`${testId}__logo`)).not.toBeInTheDocument();
             });
 
             it("Should redirect to landing page when brand gets clicked on desktop.", () => {
@@ -51,7 +51,7 @@ describe("layout", () => {
                 const { getByTestId } = renderComponent();
 
                 // when
-                fireClickEvent(getByTestId(`${testId}__brand`));
+                fireClickEvent(getByTestId(`${testId}__logo`));
 
                 // then
                 expect(push).toHaveBeenCalledWith(config.appRoutes.landingPage);
