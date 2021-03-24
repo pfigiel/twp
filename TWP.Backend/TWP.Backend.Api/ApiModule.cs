@@ -2,8 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TWP.Backend.Api.Commands;
+using TWP.Backend.Api.Commands.Register;
+using TWP.Backend.Api.Commands.RevokeRefreshToken;
 using TWP.Backend.Api.Queries;
+using TWP.Backend.Api.Queries.Authenticate;
 using TWP.Backend.Api.Queries.Healthcheck;
+using TWP.Backend.Api.Queries.RefreshToken;
 using TWP.Backend.Infrastructure.Providers;
 
 namespace TWP.Backend.Api
@@ -25,6 +29,11 @@ namespace TWP.Backend.Api
             serviceCollection.AddScoped<ICommandDispatcher, CommandDispatcher>();
 
             serviceCollection.AddScoped<IQueryHandler<PingQuery, PingQueryResponse>, PingQueryHandler>();
+            serviceCollection.AddScoped<IQueryHandler<AuthenticateQuery, AuthenticateQueryResponse>, AuthenticateQueryHandler>();
+            serviceCollection.AddScoped<IQueryHandler<RefreshTokenQuery, RefreshTokenQueryResponse>, RefreshTokenQueryHandler>();
+
+            serviceCollection.AddScoped<ICommandHandler<RegisterCommand>, RegisterCommandHandler>();
+            serviceCollection.AddScoped<ICommandHandler<RevokeRefreshTokenCommand>, RevokeRefreshTokenCommandHandler>();
 
             return serviceCollection;
         }

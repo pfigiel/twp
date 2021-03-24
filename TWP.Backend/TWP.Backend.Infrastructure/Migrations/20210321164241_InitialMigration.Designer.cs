@@ -8,7 +8,7 @@ using TWP.Backend.Infrastructure.Database;
 
 namespace TWP.Backend.Infrastructure.Migrations
 {
-    [DbContext(typeof(DomainContext))]
+    [DbContext(typeof(ApplicationContext))]
     [Migration("20210321164241_InitialMigration")]
     partial class InitialMigration
     {

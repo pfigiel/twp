@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TWP.Backend.Infrastructure.Providers;
 using TWP.Backend.Infrastructure.Repositories;
+using TWP.Backend.Infrastructure.Services.Identity;
 
 namespace TWP.Backend.Infrastructure
 {
@@ -18,7 +19,9 @@ namespace TWP.Backend.Infrastructure
             serviceCollection.AddScoped<IDatabaseContextProvider, DatabaseContextProvider>();
             serviceCollection.AddScoped<ICancellationTokenProvider, CancellationTokenProvider>();
 
-            serviceCollection.AddScoped<ITestRepository, TestRepository>();
+            serviceCollection.AddScoped<IUserRepository, UserRepository>();
+
+            serviceCollection.AddScoped<IIdentityService, IdentityService>();
 
             return serviceCollection;
         }

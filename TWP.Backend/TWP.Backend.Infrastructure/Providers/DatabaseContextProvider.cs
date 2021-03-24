@@ -7,21 +7,21 @@ namespace TWP.Backend.Infrastructure.Providers
 {
     public class DatabaseContextProvider : IDatabaseContextProvider
     {
-        private readonly DomainContext _domainContext;
+        private readonly ApplicationContext _applicationContext;
 
-        public DatabaseContextProvider(DomainContext domainContext)
+        public DatabaseContextProvider(ApplicationContext applicationContext)
         {
-            _domainContext = domainContext;
+            _applicationContext = applicationContext;
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            return await _domainContext.SaveChangesAsync(cancellationToken);
+            return await _applicationContext.SaveChangesAsync(cancellationToken);
         }
 
         public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken)
         {
-            return await _domainContext.Database.BeginTransactionAsync(cancellationToken);
+            return await _applicationContext.Database.BeginTransactionAsync(cancellationToken);
         }
     }
 }

@@ -34,10 +34,19 @@ namespace TWP.Backend.Api.Controllers
             {
                 return Ok(await _queryDispatcher.ExecuteAsync(query));
             }
+            catch (ArgumentException exception)
+            {
+                _logger.LogError(exception, exception.Message);
+                return StatusCode((int)HttpStatusCode.BadRequest);
+            }
+            catch (UnauthorizedAccessException exception)
+            {
+                _logger.LogError(exception, exception.Message);
+                return StatusCode((int)HttpStatusCode.Unauthorized);
+            }
             catch (Exception exception)
             {
                 _logger.LogError(exception, exception.Message);
-
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
@@ -54,10 +63,19 @@ namespace TWP.Backend.Api.Controllers
             {
                 await _commandDispatcher.ExecuteAsync(command);
             }
+            catch (ArgumentException exception)
+            {
+                _logger.LogError(exception, exception.Message);
+                return StatusCode((int)HttpStatusCode.BadRequest);
+            }
+            catch (UnauthorizedAccessException exception)
+            {
+                _logger.LogError(exception, exception.Message);
+                return StatusCode((int)HttpStatusCode.Unauthorized);
+            }
             catch (Exception exception)
             {
                 _logger.LogError(exception, exception.Message);
-
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
 

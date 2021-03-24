@@ -1,4 +1,4 @@
-﻿namespace TWP.Backend.Api.Configurations
+﻿namespace TWP.Backend.Infrastructure.Configurations
 {
     public class ClientAppConfiguration
     {

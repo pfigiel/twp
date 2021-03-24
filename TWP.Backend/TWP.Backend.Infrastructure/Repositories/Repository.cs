@@ -12,14 +12,14 @@ namespace TWP.Backend.Infrastructure.Repositories
     public abstract class Repository<TEntity, TKey> : IRepository<TEntity, TKey>
         where TEntity : class, IEntity<TKey>
     {
-        protected Repository(DomainContext context)
+        protected Repository(ApplicationContext context)
         {
             Context = context ?? throw new ArgumentException(nameof(context));
         }
 
         public IQueryable<TEntity> Query => Context.Set<TEntity>();
 
-        protected DomainContext Context { get; }
+        protected ApplicationContext Context { get; }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
         {
