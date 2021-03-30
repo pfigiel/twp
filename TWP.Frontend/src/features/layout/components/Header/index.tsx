@@ -1,10 +1,12 @@
 import logo from "assets/images/logo.png";
 import config from "config";
 import { useDeviceClass } from "features/common/hooks";
+import { createBemGenerator } from "features/common/utils";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import LocaleDropdown from "./LocaleDropdown";
 import Navigation from "./Navigation";
+import UserSection from "./UserSection";
 import styles from "./styles.module.scss";
 
 interface Props {
@@ -12,12 +14,13 @@ interface Props {
 }
 
 const Header = ({ "data-testid": testId = "header" }: Props) => {
+    const bem = createBemGenerator("header");
     const history = useHistory();
     const deviceClass = useDeviceClass();
 
     return (
-        <header className={styles["header"]}>
-            <div className={styles["header__left-part"]}>
+        <header className={styles[bem()]}>
+            <div className={styles[bem("section")]}>
                 {deviceClass === "desktop" && (
                     <div
                         data-testid={`${testId}__logo`}
@@ -28,7 +31,10 @@ const Header = ({ "data-testid": testId = "header" }: Props) => {
                 )}
                 <Navigation deviceClass={deviceClass} />
             </div>
-            <LocaleDropdown />
+            <div className={styles[bem("section")]}>
+                <LocaleDropdown />
+                <UserSection />
+            </div>
         </header>
     );
 };

@@ -1,6 +1,6 @@
-﻿namespace TWP.Backend.Api.Queries.Authenticate
+﻿namespace TWP.Backend.Api.Queries.SignIn
 {
-    public class AuthenticateQueryResponse : IQueryResponse
+    public class SignInQueryResponse : IQueryResponse
     {
         public string Username { get; set; }
 

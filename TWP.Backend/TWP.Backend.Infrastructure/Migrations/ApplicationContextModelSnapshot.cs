@@ -26,11 +26,14 @@ namespace TWP.Backend.Infrastructure.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FirstName")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsActivated")
+                        .HasColumnType("bit");
 
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnType("varbinary(max)");

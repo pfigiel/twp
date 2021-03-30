@@ -3,30 +3,55 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TWP.Backend.Api.Attributes;
 using TWP.Backend.Api.Commands;
-using TWP.Backend.Api.Commands.Register;
 using TWP.Backend.Api.Commands.RevokeRefreshToken;
+using TWP.Backend.Api.Commands.SignUp;
 using TWP.Backend.Api.Queries;
-using TWP.Backend.Api.Queries.Authenticate;
+using TWP.Backend.Api.Queries.CheckEmailAvailability;
+using TWP.Backend.Api.Queries.CheckUsernameAvailability;
 using TWP.Backend.Api.Queries.RefreshToken;
+using TWP.Backend.Api.Queries.SignIn;
+using TWP.Backend.Api.Queries.VerifyToken;
 
 namespace TWP.Backend.Api.Controllers
 {
     [Route("api/identity")]
     public class IdentityController : BaseController
     {
-        public IdentityController(ILogger<IdentityController> logger, IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
+        public IdentityController(
+            ILogger<IdentityController> logger,
+            IQueryDispatcher queryDispatcher,
+            ICommandDispatcher commandDispatcher)
             : base(logger, queryDispatcher, commandDispatcher)
         {
         }
 
-        [HttpGet("authenticate")]
-        public async Task<IActionResult> Authenticate([FromBody] AuthenticateQuery query)
+        [Authorize]
+        [HttpGet("verify-token")]
+        public async Task<IActionResult> VerifyToken()
         {
-            return await HandleRequestAsync<AuthenticateQuery, AuthenticateQueryResponse>(query);
+            return await HandleRequestAsync<VerifyTokenQuery, VerifyTokenQueryResponse>(new VerifyTokenQuery());
         }
 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterCommand command)
+        [HttpGet("check-email-availability")]
+        public async Task<IActionResult> CheckEmailAvailability([FromQuery] CheckEmailAvailabilityQuery query)
+        {
+            return await HandleRequestAsync<CheckEmailAvailabilityQuery, CheckEmailAvailabilityQueryResponse>(query);
+        }
+
+        [HttpGet("check-username-availability")]
+        public async Task<IActionResult> CheckUsernameAvailability([FromQuery] CheckUsernameAvailabilityQuery query)
+        {
+            return await HandleRequestAsync<CheckUsernameAvailabilityQuery, CheckUsernameAvailabilityQueryResponse>(query);
+        }
+
+        [HttpPost("sign-in")]
+        public async Task<IActionResult> Authenticate([FromBody] SignInQuery query)
+        {
+            return await HandleRequestAsync<SignInQuery, SignInQueryResponse>(query);
+        }
+
+        [HttpPost("sign-up")]
+        public async Task<IActionResult> Register([FromBody] SignUpCommand command)
         {
             return await HandleRequestAsync(command);
         }

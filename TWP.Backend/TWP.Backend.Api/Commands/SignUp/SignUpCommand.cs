@@ -1,9 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TWP.Backend.Api.Commands.Register
+namespace TWP.Backend.Api.Commands.SignUp
 {
-    public class RegisterCommand : ICommand
+    public class SignUpCommand : ICommand
     {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
         [Required]
         [MinLength(4)]
         [MaxLength(20)]

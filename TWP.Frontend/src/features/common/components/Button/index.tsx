@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { ReactElement } from "react";
 import styles from "./styles.module.scss";
 
-type ButtonVariant = "primary" | "secondary";
+type ButtonVariant = "primary" | "secondary" | "link";
 
 export interface Props {
     ["data-testid"]?: string;
@@ -15,7 +15,12 @@ export interface Props {
 const Button = ({ "data-testid": testId = "button", className, children, variant = "primary", onClick }: Props) => (
     <button
         data-testid={testId}
-        className={classNames(styles["button"], { [styles["button--secondary"]]: variant === "secondary" }, className)}
+        className={classNames(
+            styles["button"],
+            { [styles["button--secondary"]]: variant === "secondary" },
+            { [styles["button--link"]]: variant === "link" },
+            className
+        )}
         onClick={onClick}>
         {children}
     </button>

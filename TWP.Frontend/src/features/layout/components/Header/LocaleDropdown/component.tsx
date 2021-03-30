@@ -1,10 +1,9 @@
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import classNames from "classnames";
-import Dropdown, { DropdownOption } from "features/common/components/Dropdown";
+import { DropdownOption } from "features/common/components/Dropdown";
+import { locales } from "features/common/constants";
 import { Locale } from "features/common/types";
-import React, { useState } from "react";
-import styles from "./styles.module.scss";
+import HeaderDropdown from "features/layout/components/Header/HeaderDropdown";
+import { getLocaleFromStorage, setLocaleInStorage } from "features/layout/utils";
+import { useEffect } from "react";
 
 export interface Props {
     ["data-testid"]?: string;
@@ -13,44 +12,33 @@ export interface Props {
 }
 
 const LocaleDropdown = ({ "data-testid": testId = "locale-dropdown", locale, setLocale }: Props) => {
-    const [languageDropdownExpanded, setLanguageDropdownExpanded] = useState(false);
+    const options: DropdownOption<Locale>[] = locales.map((locale) => ({
+        display: locale.toUpperCase(),
+        value: locale,
+    }));
 
-    const localeDropdownOptions: DropdownOption<Locale>[] = [
-        {
-            display: "EN",
-            value: "en",
-        },
-        {
-            display: "PL",
-            value: "pl",
-        },
-    ];
+    const selectedOption = options.find((option) => option.value === locale)!;
 
-    const selectedOption = localeDropdownOptions.find((option) => option.value === locale)!;
+    const onSelect = (locale: Locale) => {
+        setLocaleInStorage(locale);
+        setLocale(locale);
+    };
+
+    useEffect(() => {
+        const storageLocale = getLocaleFromStorage();
+
+        if (storageLocale) {
+            setLocale(storageLocale as Locale);
+        }
+    }, [setLocale]);
 
     return (
-        <Dropdown
-            data-testid={testId}
-            className={styles["locale-dropdown"]}
-            optionsClassName={classNames(styles["locale-dropdown__options"])}
-            optionClassName={styles["locale-dropdown__option"]}
-            selectedOptionClassName={styles["locale-dropdown__option--selected"]}
-            options={localeDropdownOptions}
+        <HeaderDropdown
+            data-testid="locale-dropdown"
+            options={options}
+            toggleText={`${selectedOption.display}`}
             selectedOption={selectedOption}
-            toggle={
-                <div className={styles["locale-dropdown__toggle"]}>
-                    <FontAwesomeIcon
-                        data-testid={`${testId}__toggle-icon`}
-                        className={classNames(styles["locale-dropdown__toggle-icon"], {
-                            [styles["locale-dropdown__toggle-icon--rotated"]]: languageDropdownExpanded,
-                        })}
-                        icon={faChevronDown}
-                    />
-                    <span>{selectedOption.display}</span>
-                </div>
-            }
-            onSelect={setLocale}
-            onToggle={setLanguageDropdownExpanded}
+            onSelect={onSelect}
         />
     );
 };

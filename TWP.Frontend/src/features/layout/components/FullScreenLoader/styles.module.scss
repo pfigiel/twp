@@ -1,0 +1,40 @@
+@import "~styles/variables.scss";
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.full-screen-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+
+    &__center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__octagon {
+        animation: spin 4s linear infinite;
+
+        & > * {
+            stroke: $color-grey;
+        }
+    }
+
+    &__twp {
+        text-align: center;
+        font-weight: 500;
+        font-size: 3rem;
+        transform: translateY(calc(-75px - 1.5rem));
+    }
+
+    &__loading-text {
+        font-size: 1.5rem;
+    }
+}

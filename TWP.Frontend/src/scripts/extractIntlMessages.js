@@ -87,7 +87,7 @@ for (const locale of locales) {
     fs.writeFileSync(
         path.join(intlDirectoryPath, `${locale}.json`),
         `{\n${existingMessages
-            .sort()
+            .sort((a, b) => (a.id > b.id ? 1 : -1))
             .map((message) => `    "${message.id}": "${message.message}"`)
             .join(",\n")}\n}`
     );

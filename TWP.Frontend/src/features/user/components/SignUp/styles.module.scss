@@ -1,0 +1,33 @@
+@import "~styles/mixins.scss";
+
+.sign-up {
+    &__tile {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__content {
+        width: 100%;
+
+        @include tablet() {
+            width: 600px;
+        }
+
+        & > *:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+
+        & > *:first-child {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__sign-up-button {
+        margin-left: 0.5rem;
+    }
+
+    &__submit-button {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}

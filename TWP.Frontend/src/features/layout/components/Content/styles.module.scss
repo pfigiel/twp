@@ -4,13 +4,13 @@
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    background: $color-pale-blue;
+    background: $color-white;
     width: 100%;
     min-height: calc(100vh - #{$header-height} - #{$footer-height});
-    padding: 1rem;
     margin-top: $header-height;
 
     @include tablet() {
+        background: $color-pale-blue;
         padding: 1.5rem;
     }
 
@@ -22,10 +22,13 @@
         height: fit-content;
         width: 100%;
         max-width: $max-content-width;
-        box-shadow: $shadow-dark-blue;
 
         &--no-mobile-shadow {
             box-shadow: none;
+        }
+
+        @include tablet() {
+            box-shadow: $shadow-dark-blue;
         }
 
         @include desktop() {

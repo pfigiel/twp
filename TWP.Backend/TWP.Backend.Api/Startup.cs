@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +14,6 @@ using TWP.Backend.Api.Middleware;
 using TWP.Backend.Infrastructure;
 using TWP.Backend.Infrastructure.Configurations;
 using TWP.Backend.Infrastructure.Database;
-using TWP.Backend.Infrastructure.Providers;
 using TWP.Backend.Infrastructure.Repositories;
 
 namespace TWP.Backend.Api
@@ -90,9 +90,8 @@ namespace TWP.Backend.Api
                     OnTokenValidated = async context =>
                     {
                         var userService = context.HttpContext.RequestServices.GetRequiredService<IUserRepository>();
-                        var cancellationTokenProvider = context.HttpContext.RequestServices.GetRequiredService<ICancellationTokenProvider>();
                         var userId = int.Parse(context.Principal.Identity.Name);
-                        var user = await userService.GetByIdAsync(userId, cancellationTokenProvider.GetCancellationToken());
+                        var user = await userService.GetByIdAsync(userId, CancellationToken.None);
 
                         if (user == null)
                         {

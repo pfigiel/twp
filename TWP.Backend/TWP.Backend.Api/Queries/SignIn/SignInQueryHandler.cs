@@ -4,15 +4,15 @@ using TWP.Backend.Infrastructure.Providers;
 using TWP.Backend.Infrastructure.Repositories;
 using TWP.Backend.Infrastructure.Services.Identity;
 
-namespace TWP.Backend.Api.Queries.Authenticate
+namespace TWP.Backend.Api.Queries.SignIn
 {
-    public class AuthenticateQueryHandler : IQueryHandler<AuthenticateQuery, AuthenticateQueryResponse>
+    public class SignInQueryHandler : IQueryHandler<SignInQuery, SignInQueryResponse>
     {
         private readonly IUserRepository _userRepository;
         private readonly IIdentityService _identityService;
         private readonly IDatabaseContextProvider _databaseContextProvider;
 
-        public AuthenticateQueryHandler(
+        public SignInQueryHandler(
             IUserRepository userRepository,
             IIdentityService identityService,
             IDatabaseContextProvider databaseContextProvider)
@@ -22,9 +22,9 @@ namespace TWP.Backend.Api.Queries.Authenticate
             _databaseContextProvider = databaseContextProvider;
         }
 
-        public async Task<AuthenticateQueryResponse> ExecuteAsync(AuthenticateQuery query, CancellationToken cancellationToken)
+        public async Task<SignInQueryResponse> ExecuteAsync(SignInQuery query, CancellationToken cancellationToken)
         {
-            var user = await _identityService.AuthenticateAsync(query.Username, query.Password, cancellationToken);
+            var user = await _identityService.AuthenticateAsync(query.UsernameOrEmail, query.Password, cancellationToken);
             var token = _identityService.GenerateJwtToken(user);
             var refreshToken = _identityService.GenerateRefreshToken();
 
@@ -32,7 +32,7 @@ namespace TWP.Backend.Api.Queries.Authenticate
             user.RefreshTokens.Add(refreshToken);
             await _databaseContextProvider.SaveChangesAsync(cancellationToken);
 
-            return new AuthenticateQueryResponse() { Username = user.Username, Token = token, RefreshToken = refreshToken.Token };
+            return new SignInQueryResponse() { Username = user.Username, Token = token, RefreshToken = refreshToken.Token };
         }
     }
 }

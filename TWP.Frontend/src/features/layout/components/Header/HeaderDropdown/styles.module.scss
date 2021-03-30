@@ -1,0 +1,42 @@
+@import "~styles/variables.scss";
+
+.header-dropdown {
+    &__toggle,
+    &__option {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.5rem 1rem;
+    }
+
+    &__toggle {
+        display: flex;
+        justify-content: space-between;
+
+        & > * {
+            color: $color-white;
+        }
+    }
+
+    &__toggle-icon {
+        transform: rotate(0deg);
+        transition: transform $transition-time;
+        margin-right: 0.5rem;
+
+        &--rotated {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__option {
+        background: $color-white;
+
+        &--selected {
+            font-weight: 400;
+            color: $color-dark-blue;
+        }
+
+        &:hover {
+            background: $color-pale-blue;
+        }
+    }
+}

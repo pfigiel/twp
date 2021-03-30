@@ -18,36 +18,34 @@ namespace TWP.Backend.Infrastructure.Services.Identity
     public class IdentityService : IIdentityService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IDateTimeProvider _dateTimeProvider;
         private readonly IDatabaseContextProvider _databaseContextProvider;
         private readonly IOptions<IdentityConfiguration> _identityOptions;
 
         public IdentityService(
             IUserRepository userRepository,
+            IDateTimeProvider dateTimeProvider,
             IDatabaseContextProvider databaseContextProvider,
             IOptions<IdentityConfiguration> identityOptions)
         {
             _userRepository = userRepository;
+            _dateTimeProvider = dateTimeProvider;
             _databaseContextProvider = databaseContextProvider;
             _identityOptions = identityOptions;
         }
 
-        public async Task<UserEntity> AuthenticateAsync(string username, string password, CancellationToken cancellationToken)
+        public async Task<UserEntity> AuthenticateAsync(string usernameOrEmail, string password, CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            {
-                return null;
-            }
-
-            var user = await _userRepository.GetByUsernameAsync(username, cancellationToken);
+            var user = await _userRepository.GetByUsernameOrEmailAsync(usernameOrEmail, cancellationToken);
 
             if (user == null)
             {
-                return null;
+                throw new UnauthorizedAccessException($"User with username or email {usernameOrEmail} was not found.");
             }
 
-            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            if (!IsPasswordHashValid(password, user.PasswordHash, user.PasswordSalt))
             {
-                return null;
+                throw new InvalidOperationException("Generated password hash is invalid.");
             }
 
             return user;
@@ -55,6 +53,11 @@ namespace TWP.Backend.Infrastructure.Services.Identity
 
         public async Task<UserEntity> CreateUserAsync(UserEntity user, string password, CancellationToken cancellationToken)
         {
+            if (await _userRepository.GetByEmailAsync(user.Email, cancellationToken) != null)
+            {
+                throw new ArgumentException($"Email address \"{user.Email}\" is already bound to an account.");
+            }
+
             if (await _userRepository.GetByUsernameAsync(user.Username, cancellationToken) != null)
             {
                 throw new ArgumentException($"Username \"{user.Username}\" is already taken.");
@@ -64,6 +67,7 @@ namespace TWP.Backend.Infrastructure.Services.Identity
 
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
+            user.CreatedAt = _dateTimeProvider.UtcNow;
 
             await _userRepository.AddAsync(user, cancellationToken);
 
@@ -140,7 +144,7 @@ namespace TWP.Backend.Infrastructure.Services.Identity
             return new RefreshTokenEntity
             {
                 Token = Convert.ToBase64String(randomBytes),
-                ExpirationDate = DateTime.UtcNow.AddDays(_identityOptions.Value.RefreshTokenLifetimeMinutes),
+                ExpirationDate = DateTime.UtcNow.AddMinutes(_identityOptions.Value.RefreshTokenLifetimeMinutes),
                 CreationDate = DateTime.UtcNow,
             };
         }
@@ -152,7 +156,7 @@ namespace TWP.Backend.Infrastructure.Services.Identity
             passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
         }
 
-        private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+        private static bool IsPasswordHashValid(string password, byte[] storedHash, byte[] storedSalt)
         {
             if (storedHash.Length != 64)
             {

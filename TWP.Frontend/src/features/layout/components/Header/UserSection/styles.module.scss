@@ -1,0 +1,9 @@
+@import "~styles/variables.scss";
+
+.user-section {
+    &__sign-in-link {
+        cursor: pointer;
+        color: $color-white;
+        margin-left: 1rem;
+    }
+}

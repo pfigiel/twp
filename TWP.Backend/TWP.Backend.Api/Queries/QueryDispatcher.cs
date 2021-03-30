@@ -7,7 +7,7 @@ namespace TWP.Backend.Api.Queries
 {
     public class QueryDispatcher : IQueryDispatcher
     {
-        private static readonly ConcurrentDictionary<Type, Type> Handlers = new ConcurrentDictionary<Type, Type>();
+        private static readonly ConcurrentDictionary<Type, Type> Handlers = new ();
         private readonly ICancellationTokenProvider _cancellationTokenProvider;
         private readonly IServiceProvider _serviceProvider;
 

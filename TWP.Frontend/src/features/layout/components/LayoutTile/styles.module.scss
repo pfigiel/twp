@@ -3,8 +3,22 @@
 .layout-tile {
     box-shadow: none;
 
-    &:not(:last-child) {
+    &__border {
+        width: calc(100% - 2rem);
+        margin: -1px auto 0 auto;
         border-bottom: 1px solid rgba($color-dark-blue, 0.5);
+
+        @include tablet() {
+            width: calc(100% - 3rem);
+        }
+
+        @include desktop() {
+            display: none;
+        }
+
+        &:last-child {
+            display: none;
+        }
     }
 
     @include desktop() {
@@ -12,7 +26,6 @@
 
         &:not(:last-child) {
             margin-bottom: 2rem;
-            border-bottom: none;
         }
     }
 }

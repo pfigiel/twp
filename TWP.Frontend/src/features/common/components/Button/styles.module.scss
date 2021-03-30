@@ -11,4 +11,12 @@
         background: $color-white;
         border: 1px solid $color-dark-blue;
     }
+
+    &--link {
+        height: fit-content;
+        background: none;
+        color: $color-yellow;
+        padding: 0;
+        font-weight: 600;
+    }
 }

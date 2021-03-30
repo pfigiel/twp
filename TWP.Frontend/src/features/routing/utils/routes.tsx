@@ -3,6 +3,9 @@ import LandingPage from "features/landingPage/components/LandingPage";
 import Dashboard from "features/routing/components/Pages/Dashboard";
 import PrivacyPolicy from "features/routing/components/Pages/PrivacyPolicy";
 import Regulations from "features/routing/components/Pages/Regulations";
+import SignIn from "features/routing/components/Pages/SignIn";
+import SignOut from "features/routing/components/Pages/SignOut";
+import SignUp from "features/routing/components/Pages/SignUp";
 import SongsList from "features/routing/components/Pages/SongsList";
 import { AppRoute } from "features/routing/types";
 import React from "react";
@@ -26,6 +29,21 @@ const routes: AppRoute[] = [
     {
         path: config.appRoutes.regulations,
         component: <Regulations />,
+        exact: true,
+    },
+    {
+        path: config.appRoutes.signIn,
+        component: <SignIn />,
+        exact: true,
+    },
+    {
+        path: config.appRoutes.signOut,
+        component: <SignOut />,
+        exact: true,
+    },
+    {
+        path: config.appRoutes.signUp,
+        component: <SignUp />,
         exact: true,
     },
     {

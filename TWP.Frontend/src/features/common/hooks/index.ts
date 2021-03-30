@@ -1,6 +1,6 @@
 import config from "config";
 import { DeviceClass } from "features/common/types";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const useOnResizeListener = (callback: () => void) => {
     useEffect(() => {
@@ -44,4 +44,14 @@ export const useDeviceClass = () => {
     }, [getDeviceClass, viewportWidth]);
 
     return deviceClass;
+};
+
+export const usePrevious = <T extends unknown>(value: T, initialValue?: T) => {
+    const valueRef = useRef(initialValue);
+
+    useEffect(() => {
+        valueRef.current = value;
+    }, [value]);
+
+    return valueRef.current;
 };

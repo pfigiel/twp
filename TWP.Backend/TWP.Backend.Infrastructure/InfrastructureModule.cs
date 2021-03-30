@@ -16,6 +16,8 @@ namespace TWP.Backend.Infrastructure
                 throw new ArgumentNullException(nameof(configuration));
             }
 
+            serviceCollection.AddScoped<IDateTimeProvider, DateTimeProvider>();
+            serviceCollection.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
             serviceCollection.AddScoped<IDatabaseContextProvider, DatabaseContextProvider>();
             serviceCollection.AddScoped<ICancellationTokenProvider, CancellationTokenProvider>();
 

@@ -5,10 +5,12 @@
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 1rem;
 
     @include tablet() {
         flex-direction: row;
         margin-bottom: -1.5rem;
+        padding: 0;
     }
 
     @include desktop() {
