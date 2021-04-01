@@ -1,0 +1,29 @@
+@import "~styles/variables.scss";
+
+.loader-section {
+    transform: scale(0.5) translateY(0.5rem);
+
+    &__container {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        top: -3.5rem;
+
+        transition: top calc(2 * #{$transition-time});
+
+        &--visible {
+            top: calc(#{$header-height} + 1rem);
+        }
+    }
+
+    &__background {
+        display: flex;
+        align-items: center;
+        background: $color-white;
+        box-shadow: $shadow-dark-blue;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+    }
+}

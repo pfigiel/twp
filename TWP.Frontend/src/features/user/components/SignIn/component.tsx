@@ -8,6 +8,7 @@ import { getTranslatedMessage } from "features/common/translations";
 import { createBemGenerator } from "features/common/utils";
 import LayoutHeaderTile from "features/layout/components/LayoutHeaderTile";
 import LayoutTile from "features/layout/components/LayoutTile";
+import { useErrorNotification, useGlobalLoader } from "features/layout/hooks";
 import messages from "features/user/translations";
 import { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
@@ -27,6 +28,9 @@ const SignIn = ({ signInLoading, signInSuccess, signInError, signInAsync, resetS
     const history = useHistory();
     const bem = createBemGenerator("sign-in");
     const createCancelToken = useCreateCancelToken();
+
+    useGlobalLoader(signInLoading);
+    useErrorNotification(getTranslatedMessage(messages.signIn.error, intl), !!signInError);
 
     const [password, setPassword] = useState<string>("");
     const [usernameOrEmail, setUsernameOrEmail] = useState<string>("");

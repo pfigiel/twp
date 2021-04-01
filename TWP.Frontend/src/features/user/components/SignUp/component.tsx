@@ -8,6 +8,7 @@ import { getTranslatedMessage } from "features/common/translations";
 import { createBemGenerator } from "features/common/utils";
 import LayoutHeaderTile from "features/layout/components/LayoutHeaderTile";
 import LayoutTile from "features/layout/components/LayoutTile";
+import { useErrorNotification, useGlobalLoader, useSuccessNotification } from "features/layout/hooks";
 import { SignUpRequestDto } from "features/user/dtos";
 import messages from "features/user/translations";
 import { isEmailValid, isPasswordValid, isUsernameValid } from "features/user/validators";
@@ -45,6 +46,10 @@ const SignUp = ({
     const history = useHistory();
     const bem = createBemGenerator("sign-up");
     const createCancelToken = useCreateCancelToken();
+
+    useGlobalLoader(signUpLoading);
+    useErrorNotification(getTranslatedMessage(messages.signUp.signUpError, intl), !!signUpError);
+    useSuccessNotification(getTranslatedMessage(messages.signUp.signUpSuccess, intl), signUpSuccess);
 
     const [email, setEmail] = useState<string>("");
     const [emailError, setEmailError] = useState<string>();
@@ -163,6 +168,12 @@ const SignUp = ({
             setUsernameError(getTranslatedMessage(messages.signUp.usernameTakenError, intl));
         }
     }, [intl, isUsernameAvailable]);
+
+    useEffect(() => {
+        if (signUpSuccess) {
+            history.push(config.appRoutes.signIn);
+        }
+    });
 
     useEffect(() => {
         validateEmail();

@@ -23,15 +23,15 @@
         width: 100%;
         max-width: $max-content-width;
 
-        &--no-mobile-shadow {
-            box-shadow: none;
-        }
-
         @include tablet() {
             box-shadow: $shadow-dark-blue;
         }
 
         @include desktop() {
+            box-shadow: none;
+        }
+
+        &--no-mobile-shadow {
             box-shadow: none;
         }
     }

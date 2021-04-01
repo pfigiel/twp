@@ -1,4 +1,5 @@
 import common from "features/common/reducers";
+import layout from "features/layout/reducers";
 import UserAction from "features/user/actions";
 import userApi from "features/user/api";
 import user from "features/user/reducers";
@@ -11,6 +12,7 @@ export type Action = UserAction;
 
 const rootReducer = combineReducers({
     common,
+    layout,
     user,
 });
 

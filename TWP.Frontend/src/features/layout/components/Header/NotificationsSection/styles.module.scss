@@ -1,0 +1,50 @@
+@import "~styles/mixins.scss";
+
+.notifications-section {
+    position: fixed;
+    overflow-y: hidden;
+    top: $header-height;
+    box-shadow: $shadow-dark-blue;
+    width: 100%;
+
+    transition: height $transition-time;
+
+    &--error {
+        background: $color-red;
+    }
+
+    &--success {
+        background: $color-green;
+    }
+
+    &__notification {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $color-white;
+        background: $color-green;
+        height: 2rem;
+        padding: 0 1rem;
+
+        &--error {
+            background: $color-red;
+        }
+
+        &--success {
+            background: $color-green;
+        }
+    }
+
+    &__notification-text {
+        color: $color-white;
+        font-weight: 500;
+    }
+
+    &__close-button {
+        cursor: pointer;
+
+        svg {
+            color: $color-white;
+        }
+    }
+}

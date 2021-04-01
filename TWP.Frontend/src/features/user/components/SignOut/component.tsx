@@ -1,6 +1,7 @@
 import { useCreateCancelToken } from "api/hooks";
 import { ApiError } from "api/types";
 import { CancelToken } from "axios";
+import { useGlobalLoader } from "features/layout/hooks";
 import { SignOutHistoryState } from "features/user/types";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
@@ -13,7 +14,9 @@ export interface Props {
     resetSignOutState: () => void;
 }
 
-const SignOut = ({ signOutFinished, signOutAsync, resetSignOutState }: Props) => {
+const SignOut = ({ signOutLoading, signOutFinished, signOutAsync, resetSignOutState }: Props) => {
+    useGlobalLoader(signOutLoading);
+
     const history = useHistory();
     const createCancelToken = useCreateCancelToken();
     const historyState = history.location.state as SignOutHistoryState;

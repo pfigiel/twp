@@ -4,8 +4,10 @@ import { useDeviceClass } from "features/common/hooks";
 import { createBemGenerator } from "features/common/utils";
 import React from "react";
 import { useHistory } from "react-router-dom";
+import LoaderSection from "./LoaderSection";
 import LocaleDropdown from "./LocaleDropdown";
 import Navigation from "./Navigation";
+import NotificationsSection from "./NotificationsSection";
 import UserSection from "./UserSection";
 import styles from "./styles.module.scss";
 
@@ -19,23 +21,27 @@ const Header = ({ "data-testid": testId = "header" }: Props) => {
     const deviceClass = useDeviceClass();
 
     return (
-        <header className={styles[bem()]}>
-            <div className={styles[bem("section")]}>
-                {deviceClass === "desktop" && (
-                    <div
-                        data-testid={`${testId}__logo`}
-                        className={styles["header__logo"]}
-                        onClick={() => history.push(config.appRoutes.landingPage)}>
-                        <img src={logo} alt="" />
-                    </div>
-                )}
-                <Navigation deviceClass={deviceClass} />
-            </div>
-            <div className={styles[bem("section")]}>
-                <LocaleDropdown />
-                <UserSection />
-            </div>
-        </header>
+        <>
+            <header className={styles[bem()]}>
+                <div className={styles[bem("section")]}>
+                    {deviceClass === "desktop" && (
+                        <div
+                            data-testid={`${testId}__logo`}
+                            className={styles["header__logo"]}
+                            onClick={() => history.push(config.appRoutes.landingPage)}>
+                            <img src={logo} alt="" />
+                        </div>
+                    )}
+                    <Navigation deviceClass={deviceClass} />
+                </div>
+                <div className={styles[bem("section")]}>
+                    <LocaleDropdown />
+                    <UserSection />
+                </div>
+            </header>
+            <NotificationsSection />
+            <LoaderSection />
+        </>
     );
 };
 
