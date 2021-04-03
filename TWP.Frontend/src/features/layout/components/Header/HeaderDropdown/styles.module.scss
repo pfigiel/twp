@@ -20,8 +20,9 @@
 
     &__toggle-icon {
         transform: rotate(0deg);
-        transition: transform $transition-time;
         margin-right: 0.5rem;
+
+        transition: transform $transition-time;
 
         &--rotated {
             transform: rotate(180deg);

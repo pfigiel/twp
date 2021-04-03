@@ -1,0 +1,12 @@
+@import "~styles/variables.scss";
+
+.identicon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: $color-white;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}

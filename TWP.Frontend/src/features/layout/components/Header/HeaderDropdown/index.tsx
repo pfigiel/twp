@@ -8,7 +8,7 @@ import styles from "./styles.module.scss";
 
 export interface Props<T> {
     ["data-testid"]?: string;
-    className?: string;
+    optionsContainerClassName?: string;
     options: DropdownOption<T>[];
     toggleContent: string | ReactElement;
     selectedOption?: DropdownOption<T>;
@@ -17,7 +17,7 @@ export interface Props<T> {
 
 const HeaderDropdown = <T extends unknown>({
     "data-testid": testId = "header-dropdown",
-    className,
+    optionsContainerClassName,
     options,
     selectedOption,
     toggleContent,
@@ -30,8 +30,9 @@ const HeaderDropdown = <T extends unknown>({
     return (
         <Dropdown
             data-testid={testId}
-            className={classNames(styles[bem()], className)}
-            optionsClassName={classNames(styles[bem("options")])}
+            className={classNames(styles[bem()])}
+            optionsClassName={styles[bem("options")]}
+            optionsContainerClassName={optionsContainerClassName}
             optionClassName={styles[bem("option")]}
             selectedOptionClassName={styles[bem("option", "selected")]}
             options={options}

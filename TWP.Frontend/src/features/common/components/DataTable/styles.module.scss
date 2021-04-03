@@ -1,0 +1,23 @@
+@import "~styles/variables.scss";
+
+.data-table {
+    display: flex;
+
+    &__column {
+        flex: 1;
+    }
+
+    &__cell {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgba($color-grey, 0.25);
+        height: 3rem;
+
+        &--header {
+            position: sticky;
+            top: $header-height;
+            background: $color-white;
+            font-weight: 500;
+        }
+    }
+}

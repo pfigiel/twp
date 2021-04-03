@@ -5,9 +5,9 @@ import { createBemGenerator } from "features/common/utils";
 import HeaderDropdown from "features/layout/components/Header/HeaderDropdown";
 import messages from "features/layout/translations";
 import { SignOutHistoryState } from "features/user/types";
-import Blockies from "react-blockies";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router";
+import Identicon from "./Identicon";
 import styles from "./styles.module.scss";
 
 enum SelectedOption {
@@ -45,12 +45,12 @@ const UserSection = ({ username }: Props) => {
             {username ? (
                 <HeaderDropdown
                     data-testid="user-section__user-dropdown"
-                    className={styles[bem("user-dropdown")]}
+                    optionsContainerClassName={styles[bem("user-dropdown-options")]}
                     options={options}
                     toggleContent={
                         <div className={styles[bem("dropdown-toggle-content")]}>
                             <span>{username}</span>
-                            <Blockies className={styles[bem("blockies")]} seed={username} scale={3} />
+                            <Identicon seed={username} />
                         </div>
                     }
                     onSelect={handleOptionSelect}

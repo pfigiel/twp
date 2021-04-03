@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import config from "config";
 import { useHistory } from "react-router-dom";
-import { fireClickEvent } from "tests/utils";
+import { fireClickEvent, withIntlProvider } from "tests/utils";
 import { mocked } from "ts-jest/utils";
 import Dashboard from "..";
 
@@ -12,7 +12,7 @@ describe("dashboard", () => {
         const testId = "dashboard";
 
         describe("Dashboard", () => {
-            const renderComponent = () => render(<Dashboard data-testid={testId} />);
+            const renderComponent = () => render(withIntlProvider(<Dashboard data-testid={testId} />));
 
             it("Should redirect to songs when songs tile gets clicked.", () => {
                 // given

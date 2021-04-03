@@ -21,6 +21,7 @@
         box-shadow: $shadow-dark-blue;
         transform: scale(1);
         opacity: 1;
+
         transition: transform $transition-time, opacity $transition-time;
 
         &--hidden {

@@ -1,9 +1,9 @@
 @import "~styles/mixins.scss";
 
 .footer {
-    width: 100%;
     background: $color-dark-blue;
     box-shadow: $shadow-dark-blue;
+    width: 100%;
 
     &__top-part,
     &__bottom-part {

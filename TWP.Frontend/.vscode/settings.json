@@ -19,7 +19,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "cSpell.words": [
-        "Blockies",
+        "Identicon",
         "TTFB",
         "browserslist",
         "chromeframe",
@@ -27,6 +27,7 @@
         "fontawesome",
         "fortawesome",
         "healthcheck",
+        "identicons",
         "immer",
         "mixins",
         "stylelint",

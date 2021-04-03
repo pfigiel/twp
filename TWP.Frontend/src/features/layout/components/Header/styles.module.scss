@@ -8,6 +8,7 @@
     position: fixed;
     background: $color-dark-blue;
     box-shadow: $shadow-dark-blue;
+    z-index: $header-z-index;
     height: 3em;
     width: 100%;
     padding: 0 1rem;

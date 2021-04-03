@@ -17,8 +17,8 @@
         }
     }
 
-    &__blockies {
-        border: 2px solid $color-yellow;
-        border-radius: 50%;
+    &__user-dropdown-options {
+        position: relative;
+        top: -0.5rem;
     }
 }

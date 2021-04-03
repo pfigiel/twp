@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import ClickAwayListener from "features/common/components/ClickAwayListener";
 import { useOnResizeListener } from "features/common/hooks";
-import { numberToPixels } from "features/common/utils";
+import { createBemGenerator, numberToPixels } from "features/common/utils";
 import { ReactElement, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 
@@ -15,6 +15,7 @@ export interface Props<T> {
     className?: string;
     toggleClassName?: string;
     optionsClassName?: string;
+    optionsContainerClassName?: string;
     optionClassName?: string;
     selectedOptionClassName?: string;
     options: DropdownOption<T>[];
@@ -30,6 +31,7 @@ const Dropdown = <T extends unknown>({
     className,
     toggleClassName,
     optionsClassName,
+    optionsContainerClassName,
     optionClassName,
     selectedOptionClassName,
     options,
@@ -39,6 +41,8 @@ const Dropdown = <T extends unknown>({
     onSelect,
     onToggle,
 }: Props<T>) => {
+    const bem = createBemGenerator("dropdown");
+
     const toggleRef = useRef<HTMLDivElement | null>(null);
 
     const [expanded, setExpanded] = useState(false);
@@ -66,20 +70,20 @@ const Dropdown = <T extends unknown>({
 
     return (
         <ClickAwayListener onClickAway={() => onLocalToggle(false)}>
-            <div data-testid={testId} className={classNames(styles["dropdown"], className)}>
+            <div data-testid={testId} className={classNames(styles[bem()], className)}>
                 <div
                     data-testid={`${testId}__toggle`}
-                    className={classNames(styles["dropdown__toggle"], toggleClassName)}
+                    className={classNames(styles[bem("toggle")], toggleClassName)}
                     ref={toggleRef}
                     onClick={() => onLocalToggle(!expanded)}>
                     {toggle ?? selectedOption?.display ?? placeholder ?? ""}
                 </div>
-                <div className={styles["dropdown__options-container"]}>
+                <div className={classNames(styles[bem("options-container")], optionsContainerClassName)}>
                     <div
                         data-testid={`${testId}__options`}
                         className={classNames(
-                            styles["dropdown__options"],
-                            { [styles["dropdown__options--hidden"]]: !expanded },
+                            styles[bem("options")],
+                            { [styles[bem("options", "hidden")]]: !expanded },
                             optionsClassName
                         )}
                         style={{ width: toggleWidth }}>
@@ -88,7 +92,7 @@ const Dropdown = <T extends unknown>({
                                 key={`${option.value}`}
                                 data-testid={`${testId}__option`}
                                 className={classNames(
-                                    styles["dropdown__option"],
+                                    styles[bem("option")],
                                     option.value === selectedOption?.value && selectedOptionClassName,
                                     optionClassName
                                 )}

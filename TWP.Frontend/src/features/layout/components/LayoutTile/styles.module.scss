@@ -3,6 +3,8 @@
 .layout-tile {
     box-shadow: none;
 
+    transition: margin-bottom $transition-time;
+
     &__border {
         width: calc(100% - 2rem);
         margin: -1px auto 0 auto;
@@ -23,9 +25,6 @@
 
     @include desktop() {
         box-shadow: $shadow-dark-blue;
-
-        &:not(:last-child) {
-            margin-bottom: 2rem;
-        }
+        margin-bottom: 2rem;
     }
 }
