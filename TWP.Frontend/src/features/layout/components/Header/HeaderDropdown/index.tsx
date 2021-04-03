@@ -3,22 +3,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import Dropdown, { DropdownOption } from "features/common/components/Dropdown";
 import { createBemGenerator } from "features/common/utils";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import styles from "./styles.module.scss";
 
 export interface Props<T> {
     ["data-testid"]?: string;
+    className?: string;
     options: DropdownOption<T>[];
-    toggleText: string;
+    toggleContent: string | ReactElement;
     selectedOption?: DropdownOption<T>;
     onSelect: (option: T) => void;
 }
 
 const HeaderDropdown = <T extends unknown>({
     "data-testid": testId = "header-dropdown",
+    className,
     options,
     selectedOption,
-    toggleText,
+    toggleContent,
     onSelect,
 }: Props<T>) => {
     const bem = createBemGenerator("header-dropdown");
@@ -28,7 +30,7 @@ const HeaderDropdown = <T extends unknown>({
     return (
         <Dropdown
             data-testid={testId}
-            className={styles[bem()]}
+            className={classNames(styles[bem()], className)}
             optionsClassName={classNames(styles[bem("options")])}
             optionClassName={styles[bem("option")]}
             selectedOptionClassName={styles[bem("option", "selected")]}
@@ -43,7 +45,7 @@ const HeaderDropdown = <T extends unknown>({
                         })}
                         icon={faChevronDown}
                     />
-                    <span>{toggleText}</span>
+                    <span>{toggleContent}</span>
                 </div>
             }
             onSelect={onSelect}

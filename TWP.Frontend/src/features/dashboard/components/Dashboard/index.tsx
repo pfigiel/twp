@@ -1,6 +1,9 @@
 import config from "config";
 import Tile from "features/common/components/Tile";
+import { getTranslatedMessage } from "features/common/translations";
+import messages from "features/dashboard/translations";
 import React from "react";
+import { useIntl } from "react-intl";
 import { useHistory } from "react-router-dom";
 import styles from "./styles.module.scss";
 
@@ -9,6 +12,7 @@ export interface Props {
 }
 
 const Dashboard = ({ "data-testid": testId = "dashboard" }) => {
+    const intl = useIntl();
     const history = useHistory();
 
     return (
@@ -18,13 +22,13 @@ const Dashboard = ({ "data-testid": testId = "dashboard" }) => {
                 className={styles["dashboard__tile"]}
                 clickable
                 onClick={() => history.push(config.appRoutes.songs)}>
-                <h1>Lorem ipsum</h1>
+                <h1>{getTranslatedMessage(messages.songs, intl)}</h1>
             </Tile>
             <Tile className={styles["dashboard__tile"]} clickable onClick={() => {}}>
-                <h1>Lorem ipsum</h1>
+                <h1>{getTranslatedMessage(messages.collections, intl)}</h1>
             </Tile>
             <Tile className={styles["dashboard__tile"]} clickable onClick={() => {}}>
-                <h1>Lorem ipsum</h1>
+                <h1>{getTranslatedMessage(messages.editor, intl)}</h1>
             </Tile>
             <Tile className={styles["dashboard__tile"]} clickable onClick={() => {}}>
                 <h1>Lorem ipsum</h1>

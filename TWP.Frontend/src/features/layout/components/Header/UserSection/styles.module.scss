@@ -6,4 +6,19 @@
         color: $color-white;
         margin-left: 1rem;
     }
+
+    &__dropdown-toggle-content {
+        display: flex;
+        align-items: center;
+
+        & > span {
+            color: $color-white;
+            margin-right: 1rem;
+        }
+    }
+
+    &__blockies {
+        border: 2px solid $color-yellow;
+        border-radius: 50%;
+    }
 }

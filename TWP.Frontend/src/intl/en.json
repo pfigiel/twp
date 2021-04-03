@@ -1,11 +1,11 @@
 {
+    "common__collections": "Collections",
     "common__dashboard": "Dashboard",
+    "common__editor": "Editor",
     "common__field-required": "Field required",
-    "common__my-collections": "My collections",
     "common__privacy-policy": "Privacy policy",
     "common__regulations": "Regulations",
     "common__sign-in": "Sign in",
-    "common__song-creator": "Song creator",
     "common__songs": "Songs",
     "footer__contact-us": "Contact us",
     "full-screen-loader__loading": "Loading",

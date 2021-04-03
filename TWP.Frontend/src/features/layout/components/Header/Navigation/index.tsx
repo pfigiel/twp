@@ -27,11 +27,11 @@ const Navigation = ({ "data-testid": testId = "navigation", deviceClass }: Props
             value: config.appRoutes.songs,
         },
         {
-            display: getTranslatedMessage(messages.header.myCollections, intl),
+            display: getTranslatedMessage(messages.header.collections, intl),
             value: config.appRoutes.myCollections,
         },
         {
-            display: getTranslatedMessage(messages.header.songCreator, intl),
+            display: getTranslatedMessage(messages.header.editor, intl),
             value: config.appRoutes.songCreator,
         },
     ];
@@ -53,12 +53,12 @@ const Navigation = ({ "data-testid": testId = "navigation", deviceClass }: Props
                     <span
                         data-testid={`${testId}__desktop-nav-link`}
                         onClick={() => history.push(config.appRoutes.dashboard)}>
-                        {getTranslatedMessage(messages.header.myCollections, intl)}
+                        {getTranslatedMessage(messages.header.collections, intl)}
                     </span>
                     <span
                         data-testid={`${testId}__desktop-nav-link`}
                         onClick={() => history.push(config.appRoutes.dashboard)}>
-                        {getTranslatedMessage(messages.header.songCreator, intl)}
+                        {getTranslatedMessage(messages.header.editor, intl)}
                     </span>
                 </div>
             ) : (

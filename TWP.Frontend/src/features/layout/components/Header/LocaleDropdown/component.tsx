@@ -36,7 +36,7 @@ const LocaleDropdown = ({ "data-testid": testId = "locale-dropdown", locale, set
         <HeaderDropdown
             data-testid="locale-dropdown"
             options={options}
-            toggleText={`${selectedOption.display}`}
+            toggleContent={`${selectedOption.display}`}
             selectedOption={selectedOption}
             onSelect={onSelect}
         />

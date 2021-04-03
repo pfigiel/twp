@@ -11,10 +11,10 @@ const messages = {
     },
     header: {
         dashboard: commonMessages.dashboard,
-        myCollections: commonMessages.myCollections,
+        collections: commonMessages.collections,
         signIn: commonMessages.signIn,
         signOut: "header__sign-out",
-        songCreator: commonMessages.songCreator,
+        editor: commonMessages.editor,
         songs: commonMessages.songs,
     },
 };
