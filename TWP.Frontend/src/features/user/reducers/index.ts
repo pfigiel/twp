@@ -36,7 +36,7 @@ export interface UserState {
     user?: User;
 }
 
-const common = (
+const user = (
     state: UserState = {
         signInLoading: false,
         signUpLoading: false,
@@ -167,4 +167,4 @@ const common = (
         }
     });
 
-export default common;
+export default user;

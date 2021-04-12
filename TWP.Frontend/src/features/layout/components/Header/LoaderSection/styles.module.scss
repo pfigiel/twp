@@ -9,11 +9,13 @@
         justify-content: center;
         width: 100%;
         top: -3.5rem;
+        opacity: 0;
 
-        transition: top calc(2 * #{$transition-time});
+        transition: top calc(2 * #{$transition-time}), opacity calc(2 * #{$transition-time});
 
         &--visible {
             top: calc(#{$header-height} + 1rem);
+            opacity: 1;
         }
     }
 

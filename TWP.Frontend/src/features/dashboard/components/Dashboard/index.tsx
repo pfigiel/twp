@@ -24,12 +24,15 @@ const Dashboard = ({ "data-testid": testId = "dashboard" }) => {
                 onClick={() => history.push(config.appRoutes.songs)}>
                 <h1>{getTranslatedMessage(messages.songs, intl)}</h1>
             </Tile>
+            {/* // TODO: Implement onClick. */}
             <Tile className={styles["dashboard__tile"]} clickable onClick={() => {}}>
                 <h1>{getTranslatedMessage(messages.collections, intl)}</h1>
             </Tile>
+            {/* // TODO: Implement onClick. */}
             <Tile className={styles["dashboard__tile"]} clickable onClick={() => {}}>
                 <h1>{getTranslatedMessage(messages.editor, intl)}</h1>
             </Tile>
+            {/* // TODO: Implement onClick and add proper header text. */}
             <Tile className={styles["dashboard__tile"]} clickable onClick={() => {}}>
                 <h1>Lorem ipsum</h1>
             </Tile>

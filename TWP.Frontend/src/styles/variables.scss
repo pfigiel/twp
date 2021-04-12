@@ -10,15 +10,15 @@ $color-green: #449435;
 $shadow-dark-blue: 0 0 10px rgba($color-dark-blue, 0.25);
 $shadow-dark-blue-strong: 0 0 10px rgba($color-dark-blue, 0.5);
 
-$header-height: 3em;
-$footer-height: 4em;
+$header-height: 3rem;
+$footer-height: 4rem;
 
 $smartphone-breakpoint-width: 641px;
 $tablet-breakpoint-width: 1025px;
 $max-content-width: 1280px;
 
 $dropdown-z-index: 1;
-
 $header-z-index: 10;
+$overlay-z-index: 20;
 
 $transition-time: 0.25s;

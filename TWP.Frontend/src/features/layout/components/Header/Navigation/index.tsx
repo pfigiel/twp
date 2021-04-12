@@ -1,10 +1,12 @@
 import config from "config";
-import Dropdown, { DropdownOption } from "features/common/components/Dropdown";
 import { getTranslatedMessage } from "features/common/translations";
 import { DeviceClass } from "features/common/types";
+import { createBemGenerator } from "features/common/utils";
 import messages from "features/layout/translations";
+import { useState } from "react";
 import { useIntl } from "react-intl";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
+import MobileDrawer from "./MobileDrawer";
 import styles from "./styles.module.scss";
 
 export interface Props {
@@ -16,30 +18,19 @@ export interface Props {
 const Navigation = ({ "data-testid": testId = "navigation", deviceClass }: Props) => {
     const intl = useIntl();
     const history = useHistory();
+    const bem = createBemGenerator("navigation");
 
-    const dropdownOptions: DropdownOption<string>[] = [
-        {
-            display: getTranslatedMessage(messages.header.dashboard, intl),
-            value: config.appRoutes.dashboard,
-        },
-        {
-            display: getTranslatedMessage(messages.header.songs, intl),
-            value: config.appRoutes.songs,
-        },
-        {
-            display: getTranslatedMessage(messages.header.collections, intl),
-            value: config.appRoutes.myCollections,
-        },
-        {
-            display: getTranslatedMessage(messages.header.editor, intl),
-            value: config.appRoutes.songCreator,
-        },
-    ];
+    const [isMobileDrawerVisible, setMobileDrawerVisible] = useState(false);
+
+    const onMobileDrawerToggleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation();
+        setMobileDrawerVisible(true);
+    };
 
     return (
-        <div className={styles["navigation"]}>
+        <div className={styles[bem()]}>
             {deviceClass === "desktop" ? (
-                <div data-testid={`${testId}__desktop-nav-links`} className={styles["navigation__nav-links"]}>
+                <div data-testid={`${testId}__desktop-nav-links`} className={styles[bem("nav-links")]}>
                     <span
                         data-testid={`${testId}__desktop-nav-link`}
                         onClick={() => history.push(config.appRoutes.dashboard)}>
@@ -52,31 +43,24 @@ const Navigation = ({ "data-testid": testId = "navigation", deviceClass }: Props
                     </span>
                     <span
                         data-testid={`${testId}__desktop-nav-link`}
-                        onClick={() => history.push(config.appRoutes.dashboard)}>
+                        onClick={() => history.push(config.appRoutes.collections)}>
                         {getTranslatedMessage(messages.header.collections, intl)}
                     </span>
                     <span
                         data-testid={`${testId}__desktop-nav-link`}
-                        onClick={() => history.push(config.appRoutes.dashboard)}>
+                        onClick={() => history.push(config.appRoutes.editor)}>
                         {getTranslatedMessage(messages.header.editor, intl)}
                     </span>
                 </div>
             ) : (
-                <Dropdown
-                    data-testid={`${testId}__nav-dropdown`}
-                    className={styles["navigation__dropdown"]}
-                    optionsClassName={styles["navigation__dropdown-options"]}
-                    optionClassName={styles["navigation__dropdown-option"]}
-                    options={dropdownOptions}
-                    toggle={
-                        <div className={styles["navigation__hamburger-icon"]}>
-                            <div />
-                            <div />
-                            <div />
-                        </div>
-                    }
-                    onSelect={(route) => history.push(route)}
-                />
+                <>
+                    <div className={styles[bem("hamburger-icon")]} onClick={onMobileDrawerToggleClick}>
+                        <div />
+                        <div />
+                        <div />
+                    </div>
+                    <MobileDrawer visible={isMobileDrawerVisible} setVisibility={setMobileDrawerVisible} />
+                </>
             )}
         </div>
     );

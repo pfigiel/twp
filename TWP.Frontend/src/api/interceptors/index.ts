@@ -28,9 +28,7 @@ export const appendAuthHeaderInterceptor = (requestConfig: AxiosRequestConfig) =
 export const refreshTokenInterceptor = (
     instance: AxiosInstance
 ): Parameters<AxiosInterceptorManager<AxiosResponse>["use"]> => [
-    (response: AxiosResponse) => {
-        return response;
-    },
+    (response: AxiosResponse) => response,
     async (error: AxiosError) => {
         if (!error) {
             return Promise.reject();

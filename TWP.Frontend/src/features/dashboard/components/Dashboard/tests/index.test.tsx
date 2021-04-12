@@ -5,7 +5,7 @@ import { fireClickEvent, withIntlProvider } from "tests/utils";
 import { mocked } from "ts-jest/utils";
 import Dashboard from "..";
 
-jest.mock("react-router-dom", () => ({ ...(jest.requireActual("react-router-dom") as any), useHistory: jest.fn() }));
+jest.mock("react-router-dom", () => ({ ...(jest.requireActual("react-router-dom") as object), useHistory: jest.fn() }));
 
 describe("dashboard", () => {
     describe("components", () => {
@@ -17,7 +17,7 @@ describe("dashboard", () => {
             it("Should redirect to songs when songs tile gets clicked.", () => {
                 // given
                 const push = jest.fn();
-                mocked(useHistory).mockReturnValue({ ...useHistory(), push });
+                mocked(useHistory).mockReturnValue({ push } as any);
                 const { getByTestId } = renderComponent();
 
                 // when

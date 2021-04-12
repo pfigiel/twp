@@ -46,7 +46,7 @@ export const useDeviceClass = () => {
     return deviceClass;
 };
 
-export const usePrevious = <T extends unknown>(value: T, initialValue?: T) => {
+export const usePrevious = <TValue>(value: TValue, initialValue?: TValue) => {
     const valueRef = useRef(initialValue);
 
     useEffect(() => {
@@ -54,4 +54,18 @@ export const usePrevious = <T extends unknown>(value: T, initialValue?: T) => {
     }, [value]);
 
     return valueRef.current;
+};
+
+export const useDebounce = <TValue>(value: TValue, debounceTimeMs: number) => {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setDebouncedValue(value);
+        }, debounceTimeMs);
+
+        return () => clearTimeout(timeout);
+    });
+
+    return debouncedValue;
 };

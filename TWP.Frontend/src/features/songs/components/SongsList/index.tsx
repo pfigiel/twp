@@ -22,7 +22,7 @@ const data: ListSong[] = range(100).map((index) => ({
 const columns: TableColumn<ListSong>[] = [
     {
         key: "id",
-        label: "Id",
+        hidden: true,
     },
     {
         key: "title",

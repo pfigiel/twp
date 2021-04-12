@@ -12,11 +12,11 @@ const handleResponsePromise = <TResult>(response: AxiosResponse<TResult | undefi
     response && (response.data as TResult);
 
 export const baseApi = {
-    get: async <TResult>(path: string, cancelToken: CancelToken): Promise<TResult> => {
-        return instance.get(path, { cancelToken }).then(handleResponsePromise);
+    get: async <TResult>(url: string, cancelToken: CancelToken): Promise<TResult> => {
+        return instance.get(url, { cancelToken }).then(handleResponsePromise);
     },
-    post: async <TData, TResult>(path: string, data: TData, cancelToken: CancelToken): Promise<TResult> => {
-        return instance.post(path, data, { cancelToken }).then(handleResponsePromise);
+    post: async <TData, TResult>(url: string, data: TData, cancelToken: CancelToken): Promise<TResult> => {
+        return instance.post(url, data, { cancelToken }).then(handleResponsePromise);
     },
 };
 

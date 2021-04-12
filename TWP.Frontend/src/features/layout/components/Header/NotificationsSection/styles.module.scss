@@ -10,11 +10,11 @@
     transition: height $transition-time;
 
     &--error {
-        background: $color-red;
+        background: rgba($color-red, 0.5);
     }
 
     &--success {
-        background: $color-green;
+        background: rgba($color-green, 0.5);
     }
 
     &__notification {
@@ -27,11 +27,11 @@
         padding: 0 1rem;
 
         &--error {
-            background: $color-red;
+            background: rgba($color-red, 0.5);
         }
 
         &--success {
-            background: $color-green;
+            background: rgba($color-green, 0.5);
         }
     }
 

@@ -1,8 +1,13 @@
 import { render } from "@testing-library/react";
+import config from "config";
 import { DeviceClass } from "features/common/types";
 import each from "jest-each";
-import { withIntlProvider } from "tests/utils";
+import { useHistory } from "react-router-dom";
+import { fireClickEvent, withIntlProvider } from "tests/utils";
+import { mocked } from "ts-jest/utils";
 import Navigation, { Props } from "..";
+
+jest.mock("react-router-dom", () => ({ ...(jest.requireActual("react-router-dom") as object), useHistory: jest.fn() }));
 
 describe("layout", () => {
     describe("components", () => {
@@ -25,14 +30,37 @@ describe("layout", () => {
                     expect(queryByTestId(`${testId}__nav-dropdown`)).not.toBeInTheDocument();
                 });
 
-                each(["smartphone", "tablet"]).it("Should render nav dropdown on %p.", (deviceClass: DeviceClass) => {
-                    // given & when
-                    const { getByTestId, queryByTestId } = renderComponent({ deviceClass });
+                each(["smartphone", "tablet"]).it(
+                    "Should not render desktop nav links on %p.",
+                    (deviceClass: DeviceClass) => {
+                        // given & when
+                        const { queryByTestId } = renderComponent({ deviceClass });
 
-                    // then
-                    expect(queryByTestId(`${testId}__desktop-nav-links`)).not.toBeInTheDocument();
-                    expect(getByTestId(`${testId}__nav-dropdown`)).toBeInTheDocument();
-                });
+                        // then
+                        expect(queryByTestId(`${testId}__desktop-nav-links`)).not.toBeInTheDocument();
+                    }
+                );
+
+                each([
+                    [config.appRoutes.dashboard, 0],
+                    [config.appRoutes.songs, 1],
+                    [config.appRoutes.collections, 2],
+                    [config.appRoutes.editor, 3],
+                ]).it(
+                    "Should redirect to %p when nav link is clicked on desktop.",
+                    (route: string, linkIndex: number) => {
+                        // given
+                        const push = jest.fn();
+                        mocked(useHistory).mockReturnValue({ push } as any);
+                        const { getAllByTestId } = renderComponent({ deviceClass: "desktop" });
+
+                        // when
+                        fireClickEvent(getAllByTestId(`${testId}__desktop-nav-link`)[linkIndex]);
+
+                        // then
+                        expect(push).toHaveBeenCalledWith(route);
+                    }
+                );
             });
         });
     });

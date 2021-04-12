@@ -24,7 +24,7 @@ export interface UserApi {
     signInAsync: (dto: SignInRequestDto, cancelToken: CancelToken) => Promise<SignInResponseDto>;
     signUpAsync: (dto: SignUpRequestDto, cancelToken: CancelToken) => Promise<void>;
     signOutAsync: (dto: SignOutRequestDto, cancelToken: CancelToken) => Promise<void>;
-    verifyToken: (cancelToken: CancelToken) => Promise<VerifyTokenResponseDto>;
+    verifyTokenAsync: (cancelToken: CancelToken) => Promise<VerifyTokenResponseDto>;
     refreshTokenAsync: (dto: RefreshTokenRequestDto, cancelToken: CancelToken) => Promise<void>;
 }
 
@@ -45,7 +45,7 @@ const userApi: UserApi = {
         await baseApi.post<SignUpRequestDto, void>(config.apiRoutes.identity.signUp, dto, cancelToken),
     signOutAsync: async (dto: SignOutRequestDto, cancelToken: CancelToken) =>
         await baseApi.post<SignOutRequestDto, void>(config.apiRoutes.identity.revokeRefreshToken, dto, cancelToken),
-    verifyToken: async (cancelToken: CancelToken) =>
+    verifyTokenAsync: async (cancelToken: CancelToken) =>
         await baseApi.get<VerifyTokenResponseDto>(config.apiRoutes.identity.verifyToken, cancelToken),
     refreshTokenAsync: async (dto: RefreshTokenRequestDto, cancelToken: CancelToken) =>
         await baseApi.post<RefreshTokenRequestDto, void>(config.apiRoutes.identity.refreshToken, dto, cancelToken),

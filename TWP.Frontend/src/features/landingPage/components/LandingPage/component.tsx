@@ -59,6 +59,7 @@ const LandingPage = ({ "data-testid": testId = "landing-page", locale, setLocale
                         </Button>
                     </div>
                 </Tile>
+                {/* TODO: Implement tiles. */}
                 <Tile className={styles["landing-page__tile"]}>
                     <h1>Lorem ipsum</h1>
                     <div>{loremIpsum}</div>

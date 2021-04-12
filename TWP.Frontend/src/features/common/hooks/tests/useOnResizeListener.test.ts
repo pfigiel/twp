@@ -16,6 +16,19 @@ describe("common", () => {
                 // then
                 expect(callback).toHaveBeenCalled();
             });
+
+            it("Should remove event listener on unmount.", () => {
+                // given
+                const removeEventListener = jest.fn();
+                jest.spyOn(window, "removeEventListener").mockImplementation(removeEventListener);
+                const { unmount } = renderHook(() => useOnResizeListener(jest.fn()));
+
+                // when
+                unmount();
+
+                // then
+                expect(removeEventListener).toHaveBeenCalled();
+            });
         });
     });
 });

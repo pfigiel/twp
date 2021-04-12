@@ -1,11 +1,13 @@
 import { render } from "@testing-library/react";
 import config from "config";
+import { Locale } from "features/common/types";
+import each from "jest-each";
 import { useHistory } from "react-router-dom";
 import { fireClickEvent, withIntlProvider } from "tests/utils";
 import { mocked } from "ts-jest/utils";
 import LandingPage, { Props } from "../component";
 
-jest.mock("react-router-dom", () => ({ ...(jest.requireActual("react-router-dom") as any), useHistory: jest.fn() }));
+jest.mock("react-router-dom", () => ({ ...(jest.requireActual("react-router-dom") as object), useHistory: jest.fn() }));
 
 describe("landingPage", () => {
     describe("components", () => {
@@ -28,23 +30,28 @@ describe("landingPage", () => {
                 );
             });
 
-            it("Should fire setLocale when locale button gets clicked.", () => {
-                // given
-                const clickedLocale = "en";
-                const setLocale = jest.fn();
-                const { getByTestId } = renderComponent({ setLocale });
+            each([
+                ["pl", "en"],
+                ["en", "pl"],
+            ]).it(
+                "Should fire setLocale when %p locale button gets clicked.",
+                (newLocale: Locale, initialLocale: Locale) => {
+                    // given
+                    const setLocale = jest.fn();
+                    const { getByTestId } = renderComponent({ locale: initialLocale, setLocale });
 
-                // when
-                fireClickEvent(getByTestId(`${testId}__${clickedLocale}-locale-button`));
+                    // when
+                    fireClickEvent(getByTestId(`${testId}__${newLocale}-locale-button`));
 
-                // then
-                expect(setLocale).toHaveBeenCalledWith(clickedLocale);
-            });
+                    // then
+                    expect(setLocale).toHaveBeenCalledWith(newLocale);
+                }
+            );
 
             it("Should redirect to dashboard when go to dashboard button gets clicked.", () => {
                 // given
                 const push = jest.fn();
-                mocked(useHistory).mockReturnValue({ ...useHistory(), push });
+                mocked(useHistory).mockReturnValue({ push } as any);
                 const { getByTestId } = renderComponent();
 
                 // when

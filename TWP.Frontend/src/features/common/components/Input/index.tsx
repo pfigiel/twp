@@ -2,13 +2,12 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import ClickAwayListener from "features/common/components/ClickAwayListener";
+import { defaultMaxInputLength } from "features/common/constants";
 import messages, { getTranslatedMessage } from "features/common/translations";
 import { createBemGenerator } from "features/common/utils";
 import { ChangeEvent, useRef, useState } from "react";
 import { useIntl } from "react-intl";
 import styles from "./styles.module.scss";
-
-const defaultMaxInputLength = 100;
 
 export type Props = {
     ["data-testid"]?: string;
@@ -105,6 +104,7 @@ const Input = ({
                     />
                     {withPasswordLookup && (
                         <div
+                            data-testid={`${testId}__password-lookup`}
                             className={styles[bem("password-lookup")]}
                             onClick={() => setPasswordVisible((prev) => !prev)}>
                             <FontAwesomeIcon
@@ -115,16 +115,27 @@ const Input = ({
                     )}
                 </div>
                 {error ? (
-                    <div className={classNames(styles[bem("message")], styles[bem("message", "error")])}>{error}</div>
+                    <div
+                        data-testid={`${testId}__error-message`}
+                        className={classNames(styles[bem("message")], styles[bem("message", "error")])}>
+                        {error}
+                    </div>
                 ) : helperMessage ? (
-                    <div className={styles[bem("message")]}>{helperMessage}</div>
+                    <div data-testid={`${testId}__helper-message`} className={styles[bem("message")]}>
+                        {helperMessage}
+                    </div>
                 ) : required ? (
-                    <div className={styles[bem("message")]}>{`*${getTranslatedMessage(
+                    <div
+                        data-testid={`${testId}__required-message`}
+                        className={styles[bem("message")]}>{`*${getTranslatedMessage(
                         messages.fieldRequired,
                         intl
                     )}`}</div>
                 ) : (
-                    <div className={styles[bem("message-placeholder")]} />
+                    <div
+                        data-testid={`${testId}__message-placeholder`}
+                        className={styles[bem("message-placeholder")]}
+                    />
                 )}
             </div>
         </ClickAwayListener>

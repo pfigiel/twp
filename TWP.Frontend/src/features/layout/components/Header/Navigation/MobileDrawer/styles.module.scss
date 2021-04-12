@@ -1,0 +1,33 @@
+@import "~styles/variables.scss";
+
+.mobile-drawer {
+    position: fixed;
+    overflow: hidden;
+    background: $color-white;
+    z-index: $overlay-z-index;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100vh;
+
+    transition: width $transition-time;
+
+    &--visible {
+        width: 250px;
+    }
+
+    &__backdrop {
+        position: fixed;
+        display: none;
+        background: rgba($color-grey, 0.5);
+        z-index: $overlay-z-index;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+
+        &--visible {
+            display: initial;
+        }
+    }
+}

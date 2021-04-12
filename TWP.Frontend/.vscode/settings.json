@@ -30,6 +30,7 @@
         "identicons",
         "immer",
         "mixins",
+        "rerender",
         "stylelint",
         "testid",
         "trivago",

@@ -8,7 +8,7 @@ import { fireClickEvent, withIntlProvider, withReduxProvider } from "tests/utils
 import { mocked } from "ts-jest/utils";
 import Header from "..";
 
-jest.mock("react-router-dom", () => ({ ...(jest.requireActual("react-router-dom") as any), useHistory: jest.fn() }));
+jest.mock("react-router-dom", () => ({ ...(jest.requireActual("react-router-dom") as object), useHistory: jest.fn() }));
 jest.mock("features/common/hooks", () => ({
     ...(jest.requireActual("features/common/hooks") as any),
     useDeviceClass: jest.fn(),
@@ -46,7 +46,7 @@ describe("layout", () => {
             it("Should redirect to landing page when brand gets clicked on desktop.", () => {
                 // given
                 const push = jest.fn();
-                mocked(useHistory).mockReturnValue({ ...useHistory(), push });
+                mocked(useHistory).mockReturnValue({ push } as any);
                 mocked(useDeviceClass).mockReturnValue("desktop");
                 const { getByTestId } = renderComponent();
 

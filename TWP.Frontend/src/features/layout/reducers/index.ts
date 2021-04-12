@@ -26,9 +26,9 @@ const layout = (
                 draft.notifications = newNotifications;
                 break;
             case getType(removeLastNotification):
-                draft.notifications = state.notifications.length
-                    ? state.notifications.slice(0, state.notifications.length - 1)
-                    : [];
+                if (state.notifications.length) {
+                    draft.notifications = state.notifications.slice(0, state.notifications.length - 1);
+                }
                 break;
         }
     });

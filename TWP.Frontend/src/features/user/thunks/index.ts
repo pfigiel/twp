@@ -104,12 +104,12 @@ export const signOutAsync = (
 
 export const verifyTokenAsync = (
     cancelToken: CancelToken
-): ThunkAction<void, RootState, Pick<UserApi, "verifyToken">, UserAction> => {
+): ThunkAction<void, RootState, Pick<UserApi, "verifyTokenAsync">, UserAction> => {
     return async (dispatch, _, api) => {
         dispatch(verifyToken.request());
 
         try {
-            const response = await api.verifyToken(cancelToken);
+            const response = await api.verifyTokenAsync(cancelToken);
             dispatch(verifyToken.success(response));
         } catch (error) {
             resetTokensInStorage();

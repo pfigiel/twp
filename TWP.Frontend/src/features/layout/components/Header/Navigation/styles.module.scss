@@ -27,16 +27,8 @@
         }
     }
 
-    &__dropdown-option {
-        padding: 1rem 5rem 1rem 2rem;
-        white-space: nowrap;
-
-        &:hover {
-            background: $color-pale-blue;
-        }
-    }
-
     &__hamburger-icon {
+        cursor: pointer;
         display: flex;
         flex-direction: column;
         justify-content: space-between;

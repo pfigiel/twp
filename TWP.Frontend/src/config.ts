@@ -15,7 +15,8 @@ const config = {
     appRoutes: {
         dashboard: "/dashboard",
         landingPage: "/",
-        myCollections: "/my-collections",
+        collections: "/collections",
+        editor: "/editor",
         privacyPolicy: "/privacy-policy",
         regulations: "/regulations",
         signIn: "/sign-in",
