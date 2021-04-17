@@ -1,5 +1,5 @@
 import { setLocale } from "features/common/actions";
-import common, { CommonState } from "..";
+import commonReducer, { CommonState } from "..";
 
 describe("common", () => {
     describe("reducers", () => {
@@ -15,7 +15,7 @@ describe("common", () => {
                 const action = setLocale(locale);
 
                 // when
-                const state = common(createState({ locale: "pl" }), action);
+                const state = commonReducer(createState({ locale: "pl" }), action);
 
                 // then
                 expect(state.locale).toBe(locale);

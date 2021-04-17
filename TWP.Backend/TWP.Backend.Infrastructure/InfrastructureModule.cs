@@ -21,6 +21,7 @@ namespace TWP.Backend.Infrastructure
             serviceCollection.AddScoped<IDatabaseContextProvider, DatabaseContextProvider>();
             serviceCollection.AddScoped<ICancellationTokenProvider, CancellationTokenProvider>();
 
+            serviceCollection.AddScoped<ISongRepository, SongRepository>();
             serviceCollection.AddScoped<IUserRepository, UserRepository>();
 
             serviceCollection.AddScoped<IIdentityService, IdentityService>();

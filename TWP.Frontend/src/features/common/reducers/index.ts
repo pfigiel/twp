@@ -8,7 +8,7 @@ export interface CommonState {
     locale: Locale;
 }
 
-const common = (state: CommonState = { locale: defaultLocale }, action: CommonAction): CommonState =>
+const commonReducer = (state: CommonState = { locale: defaultLocale }, action: CommonAction): CommonState =>
     produce(state, (draft) => {
         switch (action.type) {
             case getType(setLocale):
@@ -17,4 +17,4 @@ const common = (state: CommonState = { locale: defaultLocale }, action: CommonAc
         }
     });
 
-export default common;
+export default commonReducer;

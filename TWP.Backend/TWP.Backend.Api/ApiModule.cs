@@ -7,6 +7,8 @@ using TWP.Backend.Api.Commands.SignUp;
 using TWP.Backend.Api.Queries;
 using TWP.Backend.Api.Queries.CheckEmailAvailability;
 using TWP.Backend.Api.Queries.CheckUsernameAvailability;
+using TWP.Backend.Api.Queries.GetSong;
+using TWP.Backend.Api.Queries.GetSongs;
 using TWP.Backend.Api.Queries.Healthcheck;
 using TWP.Backend.Api.Queries.RefreshToken;
 using TWP.Backend.Api.Queries.SignIn;
@@ -33,6 +35,8 @@ namespace TWP.Backend.Api
 
             serviceCollection.AddScoped<IQueryHandler<PingQuery, PingQueryResponse>, PingQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<SignInQuery, SignInQueryResponse>, SignInQueryHandler>();
+            serviceCollection.AddScoped<IQueryHandler<GetSongQuery, GetSongQueryResponse>, GetSongQueryHandler>();
+            serviceCollection.AddScoped<IQueryHandler<GetSongsQuery, GetSongsQueryResponse>, GetSongsQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<VerifyTokenQuery, VerifyTokenQueryResponse>, VerifyTokenQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<RefreshTokenQuery, RefreshTokenQueryResponse>, RefreshTokenQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<CheckEmailAvailabilityQuery, CheckEmailAvailabilityQueryResponse>, CheckEmailAvailabilityQueryHandler>();

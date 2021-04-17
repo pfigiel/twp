@@ -1,5 +1,7 @@
 import common from "features/common/reducers";
 import layout from "features/layout/reducers";
+import songsApi from "features/songs/api";
+import songs from "features/songs/reducers";
 import UserAction from "features/user/actions";
 import userApi from "features/user/api";
 import user from "features/user/reducers";
@@ -13,10 +15,11 @@ export type Action = UserAction;
 const rootReducer = combineReducers({
     common,
     layout,
+    songs,
     user,
 });
 
-const api = { ...userApi };
+const api = { ...songsApi, ...userApi };
 
 const createStore = () =>
     createReduxStore(rootReducer, composeWithDevTools({ trace: true })(applyMiddleware(thunk.withExtraArgument(api))));

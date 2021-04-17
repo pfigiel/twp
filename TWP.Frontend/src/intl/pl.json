@@ -28,5 +28,7 @@
     "sign-up__username": "Nazwa użytkownika",
     "sign-up__username-format-error": "Użyj od 4 do 20 znaków",
     "sign-up__username-taken-error": "Nazwa użytkownika jest już zajęta",
+    "songs__song-fetch-error": "Nie udało się załadować piosenki.",
+    "songs__songs-fetch-error": "Nie udało się załadować piosenek.",
     "user__password": "Hasło"
 }

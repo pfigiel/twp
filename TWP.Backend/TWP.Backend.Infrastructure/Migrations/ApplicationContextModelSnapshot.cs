@@ -19,6 +19,64 @@ namespace TWP.Backend.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("TWP.Backend.Domain.Models.SongEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Artist")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Songs");
+                });
+
+            modelBuilder.Entity("TWP.Backend.Domain.Models.SongFragmentEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("RepeatCount")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("SongSectionEntityId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SongSectionEntityId");
+
+                    b.ToTable("SongFragments");
+                });
+
+            modelBuilder.Entity("TWP.Backend.Domain.Models.SongSectionEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("SongEntityId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SongEntityId");
+
+                    b.ToTable("SongsSections");
+                });
+
             modelBuilder.Entity("TWP.Backend.Domain.Models.UserEntity", b =>
                 {
                     b.Property<long>("Id")
@@ -47,6 +105,20 @@ namespace TWP.Backend.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("TWP.Backend.Domain.Models.SongFragmentEntity", b =>
+                {
+                    b.HasOne("TWP.Backend.Domain.Models.SongSectionEntity", null)
+                        .WithMany("Fragments")
+                        .HasForeignKey("SongSectionEntityId");
+                });
+
+            modelBuilder.Entity("TWP.Backend.Domain.Models.SongSectionEntity", b =>
+                {
+                    b.HasOne("TWP.Backend.Domain.Models.SongEntity", null)
+                        .WithMany("Sections")
+                        .HasForeignKey("SongEntityId");
                 });
 
             modelBuilder.Entity("TWP.Backend.Domain.Models.UserEntity", b =>
@@ -87,6 +159,16 @@ namespace TWP.Backend.Infrastructure.Migrations
                         });
 
                     b.Navigation("RefreshTokens");
+                });
+
+            modelBuilder.Entity("TWP.Backend.Domain.Models.SongEntity", b =>
+                {
+                    b.Navigation("Sections");
+                });
+
+            modelBuilder.Entity("TWP.Backend.Domain.Models.SongSectionEntity", b =>
+                {
+                    b.Navigation("Fragments");
                 });
 #pragma warning restore 612, 618
         }

@@ -7,9 +7,9 @@ describe("layout", () => {
             const testId = "layout-header-tile";
 
             const renderComponent = (props: Partial<Props> = {}) => {
-                const { title = "", content } = props;
+                const { title = "" } = props;
 
-                return render(<LayoutHeaderTile title={title} content={content} />);
+                return render(<LayoutHeaderTile title={title} />);
             };
 
             it("Should render title.", () => {
@@ -21,18 +21,6 @@ describe("layout", () => {
 
                 // then
                 expect(getByTestId(`${testId}`)).toHaveTextContent(title);
-            });
-
-            it("Should render content when provided.", () => {
-                // given
-                const contentTestId = "child";
-                const content = <div data-testid={contentTestId} />;
-
-                // when
-                const { getByTestId } = renderComponent({ content });
-
-                // then
-                expect(getByTestId(contentTestId)).toBeInTheDocument();
             });
         });
     });

@@ -1,7 +1,7 @@
 import { verifyToken } from "features/user/actions";
 import { VerifyTokenResponseDto } from "features/user/dtos";
 import { createApiError } from "tests/utils";
-import user from "..";
+import userReducer from "..";
 import { createState, createTestUser } from "./helpers";
 
 describe("user", () => {
@@ -12,7 +12,10 @@ describe("user", () => {
                 const action = verifyToken.request();
 
                 // when
-                const state = user(createState({ user: createTestUser(), verifyTokenError: createApiError() }), action);
+                const state = userReducer(
+                    createState({ user: createTestUser(), verifyTokenError: createApiError() }),
+                    action
+                );
 
                 // then
                 expect(state.verifyTokenLoading).toBe(true);
@@ -26,7 +29,7 @@ describe("user", () => {
                 const action = verifyToken.success(responseDto);
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({
                         verifyTokenLoading: true,
                         verifyTokenError: createApiError(),
@@ -46,7 +49,7 @@ describe("user", () => {
                 const action = verifyToken.failure(error);
 
                 // when
-                const state = user(createState({ verifyTokenLoading: true, user: createTestUser() }), action);
+                const state = userReducer(createState({ verifyTokenLoading: true, user: createTestUser() }), action);
 
                 // then
                 expect(state.verifyTokenLoading).toBe(false);

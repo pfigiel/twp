@@ -1,7 +1,7 @@
 import { signIn } from "features/user/actions";
 import { SignInResponseDto } from "features/user/dtos";
 import { createApiError } from "tests/utils";
-import user from "..";
+import userReducer from "..";
 import { createState } from "./helpers";
 
 describe("user", () => {
@@ -12,7 +12,7 @@ describe("user", () => {
                 const action = signIn.request();
 
                 // when
-                const state = user(createState({ signUpSuccess: true, signUpError: createApiError() }), action);
+                const state = userReducer(createState({ signUpSuccess: true, signUpError: createApiError() }), action);
 
                 // then
                 expect(state.signInLoading).toBe(true);
@@ -30,7 +30,7 @@ describe("user", () => {
                 const action = signIn.success(responseDto);
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({
                         signInLoading: true,
                         signInError: createApiError(),
@@ -51,7 +51,7 @@ describe("user", () => {
                 const action = signIn.failure(error);
 
                 // when
-                const state = user(createState({ signInLoading: true, signInSuccess: true }), action);
+                const state = userReducer(createState({ signInLoading: true, signInSuccess: true }), action);
 
                 // then
                 expect(state.signInLoading).toBe(false);

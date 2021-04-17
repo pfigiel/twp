@@ -36,7 +36,7 @@ export interface UserState {
     user?: User;
 }
 
-const user = (
+const userReducer = (
     state: UserState = {
         signInLoading: false,
         signUpLoading: false,
@@ -167,4 +167,4 @@ const user = (
         }
     });
 
-export default user;
+export default userReducer;

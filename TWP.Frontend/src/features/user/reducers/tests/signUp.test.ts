@@ -1,6 +1,6 @@
 import { signUp } from "features/user/actions";
 import { createApiError } from "tests/utils";
-import user from "..";
+import userReducer from "..";
 import { createState } from "./helpers";
 
 describe("user", () => {
@@ -11,7 +11,7 @@ describe("user", () => {
                 const action = signUp.request();
 
                 // when
-                const state = user(createState({ signUpSuccess: true, signUpError: createApiError() }), action);
+                const state = userReducer(createState({ signUpSuccess: true, signUpError: createApiError() }), action);
 
                 // then
                 expect(state.signUpLoading).toBe(true);
@@ -24,7 +24,7 @@ describe("user", () => {
                 const action = signUp.success();
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({
                         signUpLoading: true,
                         signUpError: createApiError(),
@@ -44,7 +44,7 @@ describe("user", () => {
                 const action = signUp.failure(error);
 
                 // when
-                const state = user(createState({ signUpLoading: true, signUpSuccess: true }), action);
+                const state = userReducer(createState({ signUpLoading: true, signUpSuccess: true }), action);
 
                 // then
                 expect(state.signUpLoading).toBe(false);

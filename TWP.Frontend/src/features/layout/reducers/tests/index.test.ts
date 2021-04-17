@@ -1,7 +1,7 @@
 import { pushNotification, removeLastNotification, removeNotification, setLoaderState } from "features/layout/actions";
 import { AppNotification } from "features/layout/types";
 import each from "jest-each";
-import layout, { LayoutState } from "..";
+import layoutReducer, { LayoutState } from "..";
 
 describe("layout", () => {
     describe("reducers", () => {
@@ -16,7 +16,7 @@ describe("layout", () => {
                 const action = setLoaderState(isLoaderVisible);
 
                 // when
-                const state = layout(createState({ isLoaderVisible: !isLoaderVisible }), action);
+                const state = layoutReducer(createState({ isLoaderVisible: !isLoaderVisible }), action);
 
                 // then
                 expect(state.isLoaderVisible).toBe(isLoaderVisible);
@@ -31,7 +31,7 @@ describe("layout", () => {
                 const action = pushNotification(notification);
 
                 // when
-                const state = layout(createState({ notifications }), action);
+                const state = layoutReducer(createState({ notifications }), action);
 
                 // then
                 expect(state.notifications).toHaveLength(2);
@@ -52,7 +52,7 @@ describe("layout", () => {
                 const action = removeNotification(indexOfNotificationToRemove);
 
                 // when
-                const state = layout(createState({ notifications }), action);
+                const state = layoutReducer(createState({ notifications }), action);
 
                 // then
                 expect(state.notifications).toHaveLength(notifications.length - 1);
@@ -72,7 +72,7 @@ describe("layout", () => {
                 const action = removeLastNotification();
 
                 // when
-                const state = layout(createState({ notifications }), action);
+                const state = layoutReducer(createState({ notifications }), action);
 
                 // then
                 expect(state.notifications).toHaveLength(notifications.length - 1);
@@ -86,7 +86,7 @@ describe("layout", () => {
                 const action = removeLastNotification();
 
                 // when
-                const state = layout(createState({ notifications }), action);
+                const state = layoutReducer(createState({ notifications }), action);
 
                 // then
                 expect(state.notifications).toBe(notifications);

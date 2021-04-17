@@ -1,6 +1,6 @@
 import { checkUsernameAvailability } from "features/user/actions";
 import { createApiError } from "tests/utils";
-import user from "..";
+import userReducer from "..";
 import { createState } from "./helpers";
 
 describe("user", () => {
@@ -11,7 +11,7 @@ describe("user", () => {
                 const action = checkUsernameAvailability.request();
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({ isUsernameAvailable: true, checkUsernameAvailabilityLoadingError: createApiError() }),
                     action
                 );
@@ -28,7 +28,7 @@ describe("user", () => {
                 const action = checkUsernameAvailability.success({ isUsernameAvailable });
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({
                         checkUsernameAvailabilityLoading: true,
                         checkUsernameAvailabilityLoadingError: createApiError(),
@@ -48,7 +48,7 @@ describe("user", () => {
                 const action = checkUsernameAvailability.failure(error);
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({ checkUsernameAvailabilityLoading: true, isUsernameAvailable: true }),
                     action
                 );

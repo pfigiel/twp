@@ -28,5 +28,7 @@
     "sign-up__username": "Username",
     "sign-up__username-format-error": "Use between 4 and 20 characters",
     "sign-up__username-taken-error": "Username is already taken",
+    "songs__song-fetch-error": "Failed to load the song.",
+    "songs__songs-fetch-error": "Failed to load songs.",
     "user__password": "Password"
 }

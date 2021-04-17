@@ -2,8 +2,7 @@ import { DropdownOption } from "features/common/components/Dropdown";
 import { locales } from "features/common/constants";
 import { Locale } from "features/common/types";
 import HeaderDropdown from "features/layout/components/Header/HeaderDropdown";
-import { getLocaleFromStorage, setLocaleInStorage } from "features/layout/utils";
-import { useEffect } from "react";
+import { setLocaleInStorage } from "features/layout/utils";
 
 export interface Props {
     ["data-testid"]?: string;
@@ -23,14 +22,6 @@ const LocaleDropdown = ({ "data-testid": testId = "locale-dropdown", locale, set
         setLocaleInStorage(locale);
         setLocale(locale);
     };
-
-    useEffect(() => {
-        const storageLocale = getLocaleFromStorage();
-
-        if (storageLocale) {
-            setLocale(storageLocale as Locale);
-        }
-    }, [setLocale]);
 
     return (
         <HeaderDropdown

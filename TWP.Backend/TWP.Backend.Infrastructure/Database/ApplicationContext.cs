@@ -12,6 +12,12 @@ namespace TWP.Backend.Infrastructure.Database
 
         public DbSet<UserEntity> Users { get; set; }
 
+        public DbSet<SongEntity> Songs { get; set; }
+
+        public DbSet<SongSectionEntity> SongsSections { get; set; }
+
+        public DbSet<SongFragmentEntity> SongFragments { get; set; }
+
         public DbSet<RefreshTokenEntity> RefreshTokens { get; set; }
     }
 }

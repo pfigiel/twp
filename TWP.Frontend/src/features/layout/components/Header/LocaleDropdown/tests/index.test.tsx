@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { defaultLocale } from "features/common/constants";
 import { Locale } from "features/common/types";
-import { getLocaleFromStorage, setLocaleInStorage } from "features/layout/utils";
+import { setLocaleInStorage } from "features/layout/utils";
 import { fireClickEvent } from "tests/utils";
 import { mocked } from "ts-jest/utils";
 import LocaleDropdown, { Props } from "../component";
@@ -23,20 +23,6 @@ describe("layout", () => {
 
                     return render(<LocaleDropdown locale={locale} setLocale={setLocale} />);
                 };
-
-                it("Should call setLocale callback on mount if locale exists in storage.", () => {
-                    // given
-                    const locale = "pl";
-                    const setLocale = jest.fn();
-                    const getLocaleFromStorageMock = jest.fn().mockReturnValue(locale);
-                    mocked(getLocaleFromStorage).mockImplementation(getLocaleFromStorageMock);
-
-                    // when
-                    renderComponent({ setLocale });
-
-                    // then
-                    expect(setLocale).toHaveBeenCalledWith(locale);
-                });
 
                 it("Should render selected locale in toggle.", () => {
                     // given & when

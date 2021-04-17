@@ -1,6 +1,6 @@
 import { signOut } from "features/user/actions";
 import { createApiError } from "tests/utils";
-import user from "..";
+import userReducer from "..";
 import { createState } from "./helpers";
 
 describe("user", () => {
@@ -11,7 +11,10 @@ describe("user", () => {
                 const action = signOut.request();
 
                 // when
-                const state = user(createState({ signOutFinished: true, signOutError: createApiError() }), action);
+                const state = userReducer(
+                    createState({ signOutFinished: true, signOutError: createApiError() }),
+                    action
+                );
 
                 // then
                 expect(state.signOutLoading).toBe(true);
@@ -24,7 +27,7 @@ describe("user", () => {
                 const action = signOut.success();
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({
                         signOutLoading: true,
                         signOutError: createApiError(),
@@ -44,7 +47,7 @@ describe("user", () => {
                 const action = signOut.failure(error);
 
                 // when
-                const state = user(createState({ signOutLoading: true, signOutFinished: true }), action);
+                const state = userReducer(createState({ signOutLoading: true, signOutFinished: true }), action);
 
                 // then
                 expect(state.signOutLoading).toBe(false);

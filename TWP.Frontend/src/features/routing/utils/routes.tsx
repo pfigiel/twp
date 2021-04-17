@@ -6,6 +6,7 @@ import Regulations from "features/routing/components/Pages/Regulations";
 import SignIn from "features/routing/components/Pages/SignIn";
 import SignOut from "features/routing/components/Pages/SignOut";
 import SignUp from "features/routing/components/Pages/SignUp";
+import Song from "features/routing/components/Pages/Song";
 import SongsList from "features/routing/components/Pages/SongsList";
 import { AppRoute } from "features/routing/types";
 import React from "react";
@@ -44,6 +45,11 @@ const routes: AppRoute[] = [
     {
         path: config.appRoutes.signUp,
         component: <SignUp />,
+        exact: true,
+    },
+    {
+        path: `${config.appRoutes.songs}/:id`,
+        component: <Song />,
         exact: true,
     },
     {

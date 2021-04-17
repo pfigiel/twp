@@ -1,16 +1,15 @@
+import LoadingTextPlaceholder from "features/common/components/LoadingTextPlaceholder";
 import LayoutTile from "features/layout/components/LayoutTile";
-import { ReactElement } from "react";
 
 export interface Props {
     ["data-testid"]?: string;
     title: string;
-    content?: ReactElement;
+    isLoading?: boolean;
 }
 
-const LayoutHeaderTile = ({ "data-testid": testId = "layout-header-tile", title, content }: Props) => (
+const LayoutHeaderTile = ({ "data-testid": testId = "layout-header-tile", title, isLoading }: Props) => (
     <LayoutTile data-testid={testId}>
-        <h1 data-testid={`${testId}__title`}>{title}</h1>
-        <>{content}</>
+        <h1 data-testid={`${testId}__title`}>{!isLoading ? title : <LoadingTextPlaceholder />}</h1>
     </LayoutTile>
 );
 

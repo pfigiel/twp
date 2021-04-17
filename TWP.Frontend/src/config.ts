@@ -11,6 +11,9 @@ const config = {
             signUp: "identity/sign-up",
             verifyToken: "identity/verify-token",
         },
+        songs: {
+            getSongs: "songs",
+        },
     },
     appRoutes: {
         dashboard: "/dashboard",

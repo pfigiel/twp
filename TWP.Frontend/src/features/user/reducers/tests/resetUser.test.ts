@@ -1,5 +1,5 @@
 import { resetUser } from "features/user/actions";
-import user from "..";
+import userReducer from "..";
 import { createState, createTestUser } from "./helpers";
 
 describe("user", () => {
@@ -10,7 +10,7 @@ describe("user", () => {
                 const action = resetUser();
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({
                         user: createTestUser(),
                     }),

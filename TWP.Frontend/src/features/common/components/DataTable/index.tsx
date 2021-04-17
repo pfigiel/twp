@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { createBemGenerator } from "features/common/utils";
+import { ReactElement } from "react";
 import styles from "./styles.module.scss";
 
 export type TableColumn<TData> = {
@@ -15,11 +16,17 @@ export type TableColumn<TData> = {
       }
 );
 
+export interface TableAction {
+    icon: ReactElement;
+    onClick: (id: number) => void;
+}
+
 export interface Props<TData> {
     ["data-testid"]?: string;
     data: TData[];
     columns: TableColumn<TData>[];
     idColumn: string & keyof TData;
+    actions?: TableAction[];
 }
 
 const DataTable = <TData extends object>({
@@ -27,6 +34,7 @@ const DataTable = <TData extends object>({
     data,
     columns,
     idColumn,
+    actions,
 }: Props<TData>) => {
     const bem = createBemGenerator("data-table");
 
@@ -51,6 +59,23 @@ const DataTable = <TData extends object>({
                         ))}
                     </div>
                 ))}
+            {actions?.length && (
+                <div className={classNames(styles[bem("column")], styles[bem("column", "action")])}>
+                    <div className={classNames(styles[bem("cell")], styles[bem("cell", "header")])} />
+                    {data.map((record) => (
+                        <div key={`${record[idColumn]}`} className={styles[bem("cell")]}>
+                            {actions.map((action, index) => (
+                                <div
+                                    key={index}
+                                    className={styles[bem("action-button")]}
+                                    onClick={() => action.onClick((record[idColumn] as unknown) as number)}>
+                                    {action.icon}
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

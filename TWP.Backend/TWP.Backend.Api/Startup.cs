@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +15,7 @@ using TWP.Backend.Api.Middleware;
 using TWP.Backend.Infrastructure;
 using TWP.Backend.Infrastructure.Configurations;
 using TWP.Backend.Infrastructure.Database;
+using TWP.Backend.Infrastructure.Mappers;
 using TWP.Backend.Infrastructure.Repositories;
 
 namespace TWP.Backend.Api
@@ -70,6 +72,10 @@ namespace TWP.Backend.Api
                     },
                 });
             });
+
+            var mapperConfig = new MapperConfiguration(config => config.AddProfile(new MapperProfile()));
+
+            services.AddSingleton(mapperConfig.CreateMapper());
 
             services.AddApiDependencies(Configuration);
             services.AddInfrastructureDependencies(Configuration);

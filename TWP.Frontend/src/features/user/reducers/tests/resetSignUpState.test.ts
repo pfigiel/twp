@@ -1,6 +1,6 @@
 import { resetSignUpState } from "features/user/actions";
 import { createApiError } from "tests/utils";
-import user from "..";
+import userReducer from "..";
 import { createState } from "./helpers";
 
 describe("user", () => {
@@ -11,7 +11,7 @@ describe("user", () => {
                 const action = resetSignUpState();
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({
                         signUpLoading: true,
                         signUpSuccess: true,

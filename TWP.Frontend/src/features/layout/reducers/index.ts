@@ -8,7 +8,7 @@ export interface LayoutState {
     isLoaderVisible: boolean;
 }
 
-const layout = (
+const layoutReducer = (
     state: LayoutState = { notifications: [], isLoaderVisible: false },
     action: LayoutAction
 ): LayoutState =>
@@ -33,4 +33,4 @@ const layout = (
         }
     });
 
-export default layout;
+export default layoutReducer;

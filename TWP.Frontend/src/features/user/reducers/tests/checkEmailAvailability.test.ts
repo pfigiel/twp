@@ -1,6 +1,6 @@
 import { checkEmailAvailability } from "features/user/actions";
 import { createApiError } from "tests/utils";
-import user from "..";
+import userReducer from "..";
 import { createState } from "./helpers";
 
 describe("user", () => {
@@ -11,7 +11,7 @@ describe("user", () => {
                 const action = checkEmailAvailability.request();
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({ isEmailAvailable: true, checkEmailAvailabilityLoadingError: createApiError() }),
                     action
                 );
@@ -28,7 +28,7 @@ describe("user", () => {
                 const action = checkEmailAvailability.success({ isEmailAvailable });
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({
                         checkEmailAvailabilityLoading: true,
                         checkEmailAvailabilityLoadingError: createApiError(),
@@ -48,7 +48,7 @@ describe("user", () => {
                 const action = checkEmailAvailability.failure(error);
 
                 // when
-                const state = user(
+                const state = userReducer(
                     createState({ checkEmailAvailabilityLoading: true, isEmailAvailable: true }),
                     action
                 );
