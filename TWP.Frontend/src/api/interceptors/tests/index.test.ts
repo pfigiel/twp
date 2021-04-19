@@ -1,5 +1,5 @@
+import { apiRoutes } from "api/constants";
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import config from "config";
 import {
     getAccessTokenFromStorage,
     getRefreshTokenFromStorage,
@@ -87,12 +87,10 @@ describe("api", () => {
                 const handler = refreshTokenInterceptor(createAxiosInstance())[1]!;
 
                 // when
-                await handler(createAxiosError({ originalRequestUrl: config.apiRoutes.identity.refreshToken })).catch(
-                    () => {
-                        // then
-                        expect(resetTokensInStorageMock).toHaveBeenCalled();
-                    }
-                );
+                await handler(createAxiosError({ originalRequestUrl: apiRoutes.identity.refreshToken })).catch(() => {
+                    // then
+                    expect(resetTokensInStorageMock).toHaveBeenCalled();
+                });
             });
 
             it("Should re-throw error when refresh token fetched from storage is null.", async () => {
@@ -133,7 +131,7 @@ describe("api", () => {
                 await handler(axiosError).catch((error: AxiosError) => {
                     // then
                     expect(error).toBe(axiosError);
-                    expect(post).toHaveBeenCalledWith(config.apiRoutes.identity.refreshToken, { refreshToken });
+                    expect(post).toHaveBeenCalledWith(apiRoutes.identity.refreshToken, { refreshToken });
                 });
             });
 

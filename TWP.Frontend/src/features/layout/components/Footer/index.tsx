@@ -1,7 +1,7 @@
-import config from "config";
 import { getTranslatedMessage } from "features/common/translations";
 import { createBemGenerator } from "features/common/utils";
 import messages from "features/layout/translations";
+import { appRoutes } from "features/routing/constants/routes";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router-dom";
 import styles from "./styles.module.scss";
@@ -24,12 +24,10 @@ const Footer = ({ "data-testid": testId = "footer" }: Props) => {
                 </span>
                 <span
                     data-testid={`${testId}__privacy-policy-link`}
-                    onClick={() => history.push(config.appRoutes.privacyPolicy)}>
+                    onClick={() => history.push(appRoutes.privacyPolicy)}>
                     {getTranslatedMessage(messages.footer.privacyPolicy, intl)}
                 </span>
-                <span
-                    data-testid={`${testId}__regulations-link`}
-                    onClick={() => history.push(config.appRoutes.regulations)}>
+                <span data-testid={`${testId}__regulations-link`} onClick={() => history.push(appRoutes.regulations)}>
                     {getTranslatedMessage(messages.footer.regulations, intl)}
                 </span>
             </div>

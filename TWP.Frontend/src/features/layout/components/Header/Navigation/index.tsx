@@ -1,8 +1,8 @@
-import config from "config";
 import { getTranslatedMessage } from "features/common/translations";
 import { DeviceClass } from "features/common/types";
 import { createBemGenerator } from "features/common/utils";
 import messages from "features/layout/translations";
+import { appRoutes } from "features/routing/constants/routes";
 import { useState } from "react";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router-dom";
@@ -31,24 +31,18 @@ const Navigation = ({ "data-testid": testId = "navigation", deviceClass }: Props
         <div className={styles[bem()]}>
             {deviceClass === "desktop" ? (
                 <div data-testid={`${testId}__desktop-nav-links`} className={styles[bem("nav-links")]}>
-                    <span
-                        data-testid={`${testId}__desktop-nav-link`}
-                        onClick={() => history.push(config.appRoutes.dashboard)}>
+                    <span data-testid={`${testId}__desktop-nav-link`} onClick={() => history.push(appRoutes.dashboard)}>
                         {getTranslatedMessage(messages.header.dashboard, intl)}
                     </span>
-                    <span
-                        data-testid={`${testId}__desktop-nav-link`}
-                        onClick={() => history.push(config.appRoutes.songs)}>
+                    <span data-testid={`${testId}__desktop-nav-link`} onClick={() => history.push(appRoutes.songs)}>
                         {getTranslatedMessage(messages.header.songs, intl)}
                     </span>
                     <span
                         data-testid={`${testId}__desktop-nav-link`}
-                        onClick={() => history.push(config.appRoutes.collections)}>
+                        onClick={() => history.push(appRoutes.collections)}>
                         {getTranslatedMessage(messages.header.collections, intl)}
                     </span>
-                    <span
-                        data-testid={`${testId}__desktop-nav-link`}
-                        onClick={() => history.push(config.appRoutes.editor)}>
+                    <span data-testid={`${testId}__desktop-nav-link`} onClick={() => history.push(appRoutes.editor)}>
                         {getTranslatedMessage(messages.header.editor, intl)}
                     </span>
                 </div>

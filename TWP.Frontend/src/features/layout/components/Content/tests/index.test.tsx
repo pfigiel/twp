@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import config from "config";
+import { appRoutes } from "features/routing/constants/routes";
 import { useCurrentRoute } from "features/routing/hooks";
 import { Fragment } from "react";
 import { mocked } from "ts-jest/utils";
@@ -35,7 +35,7 @@ describe("layout", () => {
 
             it("Should apply --no-mobile-shadow modifier if current route is dashboard.", () => {
                 // given
-                mocked(useCurrentRoute).mockReturnValue(config.appRoutes.dashboard);
+                mocked(useCurrentRoute).mockReturnValue(appRoutes.dashboard);
 
                 // when
                 const { getByTestId } = renderComponent();

@@ -1,7 +1,7 @@
-import config from "config";
 import Tile from "features/common/components/Tile";
 import { getTranslatedMessage } from "features/common/translations";
 import messages from "features/dashboard/translations";
+import { appRoutes } from "features/routing/constants/routes";
 import React from "react";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router-dom";
@@ -21,7 +21,7 @@ const Dashboard = ({ "data-testid": testId = "dashboard" }) => {
                 data-testid={`${testId}__songs-tile`}
                 className={styles["dashboard__tile"]}
                 clickable
-                onClick={() => history.push(config.appRoutes.songs)}>
+                onClick={() => history.push(appRoutes.songs)}>
                 <h1>{getTranslatedMessage(messages.songs, intl)}</h1>
             </Tile>
             {/* // TODO: Implement onClick. */}

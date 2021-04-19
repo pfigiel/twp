@@ -1,6 +1,6 @@
 import baseApi from "api";
+import { apiRoutes } from "api/constants";
 import { CancelToken } from "axios";
-import config from "config";
 import { GetSongResponseDto, GetSongsResponseDto } from "features/songs/types";
 
 export interface SongsApi {
@@ -10,9 +10,9 @@ export interface SongsApi {
 
 const songsApi: SongsApi = {
     getSongAsync: (id: number, cancelToken: CancelToken) =>
-        baseApi.get<GetSongResponseDto>(`${config.apiRoutes.songs.getSongs}/${id}`, cancelToken),
+        baseApi.get<GetSongResponseDto>(`${apiRoutes.songs.getSongs}/${id}`, cancelToken),
     getSongsAsync: (cancelToken: CancelToken) =>
-        baseApi.get<GetSongsResponseDto>(config.apiRoutes.songs.getSongs, cancelToken),
+        baseApi.get<GetSongsResponseDto>(apiRoutes.songs.getSongs, cancelToken),
 };
 
 export default songsApi;

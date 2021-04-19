@@ -1,7 +1,7 @@
 import logo from "assets/images/logo.png";
-import config from "config";
 import { useDeviceClass } from "features/common/hooks";
 import { createBemGenerator } from "features/common/utils";
+import { appRoutes } from "features/routing/constants/routes";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import LoaderSection from "./LoaderSection";
@@ -28,7 +28,7 @@ const Header = ({ "data-testid": testId = "header" }: Props) => {
                         <div
                             data-testid={`${testId}__logo`}
                             className={styles["header__logo"]}
-                            onClick={() => history.push(config.appRoutes.landingPage)}>
+                            onClick={() => history.push(appRoutes.landingPage)}>
                             <img src={logo} alt="" />
                         </div>
                     )}

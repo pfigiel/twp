@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import config from "config";
+import { appRoutes } from "features/routing/constants/routes";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { fireClickEvent, withIntlProvider } from "tests/utils";
@@ -25,7 +25,7 @@ describe("layout", () => {
                 fireClickEvent(getByTestId(`${testId}__privacy-policy-link`));
 
                 // then
-                expect(push).toHaveBeenCalledWith(config.appRoutes.privacyPolicy);
+                expect(push).toHaveBeenCalledWith(appRoutes.privacyPolicy);
             });
 
             it("Should redirect to regulations page when link gets clicked.", () => {
@@ -38,7 +38,7 @@ describe("layout", () => {
                 fireClickEvent(getByTestId(`${testId}__regulations-link`));
 
                 // then
-                expect(push).toHaveBeenCalledWith(config.appRoutes.regulations);
+                expect(push).toHaveBeenCalledWith(appRoutes.regulations);
             });
         });
     });

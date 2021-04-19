@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import config from "config";
 import { DeviceClass } from "features/common/types";
+import { appRoutes } from "features/routing/constants/routes";
 import each from "jest-each";
 import { useHistory } from "react-router-dom";
 import { fireClickEvent, withIntlProvider } from "tests/utils";
@@ -42,10 +42,10 @@ describe("layout", () => {
                 );
 
                 each([
-                    [config.appRoutes.dashboard, 0],
-                    [config.appRoutes.songs, 1],
-                    [config.appRoutes.collections, 2],
-                    [config.appRoutes.editor, 3],
+                    [appRoutes.dashboard, 0],
+                    [appRoutes.songs, 1],
+                    [appRoutes.collections, 2],
+                    [appRoutes.editor, 3],
                 ]).it(
                     "Should redirect to %p when nav link is clicked on desktop.",
                     (route: string, linkIndex: number) => {

@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import config from "config";
+import { appRoutes } from "features/routing/constants/routes";
 import { useHistory } from "react-router-dom";
 import { fireClickEvent, withIntlProvider } from "tests/utils";
 import { mocked } from "ts-jest/utils";
@@ -24,7 +24,7 @@ describe("dashboard", () => {
                 fireClickEvent(getByTestId(`${testId}__songs-tile`));
 
                 // then
-                expect(push).toHaveBeenCalledWith(config.appRoutes.songs);
+                expect(push).toHaveBeenCalledWith(appRoutes.songs);
             });
         });
     });

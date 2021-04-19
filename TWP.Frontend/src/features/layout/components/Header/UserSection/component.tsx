@@ -1,9 +1,9 @@
-import config from "config";
 import { DropdownOption } from "features/common/components/Dropdown";
 import { getTranslatedMessage } from "features/common/translations";
 import { createBemGenerator } from "features/common/utils";
 import HeaderDropdown from "features/layout/components/Header/HeaderDropdown";
 import messages from "features/layout/translations";
+import { appRoutes } from "features/routing/constants/routes";
 import { SignOutHistoryState } from "features/user/types";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router";
@@ -36,7 +36,7 @@ const UserSection = ({ username }: Props) => {
                 const historyState: SignOutHistoryState = {
                     previousRoute: `${history.location.pathname}${history.location.search}`,
                 };
-                history.push(config.appRoutes.signOut, historyState);
+                history.push(appRoutes.signOut, historyState);
         }
     };
 
@@ -56,7 +56,7 @@ const UserSection = ({ username }: Props) => {
                     onSelect={handleOptionSelect}
                 />
             ) : (
-                <div className={styles[bem("sign-in-link")]} onClick={() => history.push(config.appRoutes.signIn)}>
+                <div className={styles[bem("sign-in-link")]} onClick={() => history.push(appRoutes.signIn)}>
                     {getTranslatedMessage(messages.header.signIn, intl)}
                 </div>
             )}

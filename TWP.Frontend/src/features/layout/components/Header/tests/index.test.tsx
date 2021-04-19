@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
-import config from "config";
 import { useDeviceClass } from "features/common/hooks";
 import { DeviceClass } from "features/common/types";
+import { appRoutes } from "features/routing/constants/routes";
 import each from "jest-each";
 import { useHistory } from "react-router-dom";
 import { fireClickEvent, withIntlProvider, withReduxProvider } from "tests/utils";
@@ -54,7 +54,7 @@ describe("layout", () => {
                 fireClickEvent(getByTestId(`${testId}__logo`));
 
                 // then
-                expect(push).toHaveBeenCalledWith(config.appRoutes.landingPage);
+                expect(push).toHaveBeenCalledWith(appRoutes.landingPage);
             });
         });
     });

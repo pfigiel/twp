@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCreateCancelToken } from "api/hooks";
 import { ApiError } from "api/types";
 import { CancelToken } from "axios";
-import config from "config";
 import DataTable, { TableColumn } from "features/common/components/DataTable";
 import { getTranslatedMessage } from "features/common/translations";
 import LayoutHeaderTile from "features/layout/components/LayoutHeaderTile";
 import LayoutTile from "features/layout/components/LayoutTile";
 import { useErrorNotification, useGlobalLoader } from "features/layout/hooks";
+import { appRoutes } from "features/routing/constants/routes";
 import messages from "features/songs/translations";
 import { Song } from "features/songs/types";
 import React, { useEffect } from "react";
@@ -62,7 +62,7 @@ const SongsList = ({ songs, songsLoading, songsLoadingError, getSongsAsync }: Pr
                     actions={[
                         {
                             icon: <FontAwesomeIcon icon={faEye} />,
-                            onClick: (id: number) => history.push(`${config.appRoutes.songs}/${id}`),
+                            onClick: (id: number) => history.push(`${appRoutes.songs}/${id}`),
                         },
                     ]}
                 />

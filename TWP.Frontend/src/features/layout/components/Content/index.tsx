@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import config from "config";
+import { appRoutes } from "features/routing/constants/routes";
 import { useCurrentRoute } from "features/routing/hooks";
 import { ReactElement } from "react";
 import styles from "./styles.module.scss";
@@ -17,7 +17,7 @@ const Content = ({ "data-testid": testId = "content", children }: Props) => {
             <div
                 data-testid={`${testId}__middle-section`}
                 className={classNames(styles["content__middle-section"], {
-                    [styles["content__middle-section--no-mobile-shadow"]]: currentRoute === config.appRoutes.dashboard,
+                    [styles["content__middle-section--no-mobile-shadow"]]: currentRoute === appRoutes.dashboard,
                 })}>
                 {children}
             </div>

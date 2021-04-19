@@ -1,6 +1,6 @@
+import { apiRoutes } from "api/constants";
 import { ApiException } from "api/types";
 import axios, { AxiosError, AxiosInstance, AxiosInterceptorManager, AxiosRequestConfig, AxiosResponse } from "axios";
-import config from "config";
 import { RefreshTokenResponseDto } from "features/user/dtos";
 import {
     getAccessTokenFromStorage,
@@ -37,14 +37,14 @@ export const refreshTokenInterceptor = (
         const originalRequest = error.config as AxiosRequestConfigWithRetry;
         const refreshToken = getRefreshTokenFromStorage();
 
-        if (originalRequest?.url?.includes(config.apiRoutes.identity.refreshToken)) {
+        if (originalRequest?.url?.includes(apiRoutes.identity.refreshToken)) {
             resetTokensInStorage();
         }
 
         if (refreshToken && !originalRequest.retried) {
             originalRequest.retried = true;
 
-            const result = await instance.post(config.apiRoutes.identity.refreshToken, { refreshToken });
+            const result = await instance.post(apiRoutes.identity.refreshToken, { refreshToken });
 
             if (result.status === 200) {
                 const tokens = result.data as RefreshTokenResponseDto;

@@ -1,11 +1,11 @@
 import classNames from "classnames";
-import config from "config";
 import ClickAwayListener from "features/common/components/ClickAwayListener";
 import { transitionTime } from "features/common/constants";
 import { useDebounce } from "features/common/hooks";
 import { getTranslatedMessage } from "features/common/translations";
 import { createBemGenerator } from "features/common/utils";
 import messages from "features/layout/translations";
+import { appRoutes } from "features/routing/constants/routes";
 import React from "react";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router";
@@ -25,22 +25,22 @@ const MobileDrawer = ({ "data-testid": testId, visible, setVisibility }: Props) 
     const debouncedVisible = useDebounce(visible, transitionTime);
 
     const onDashboardLinkClick = () => {
-        history.push(config.appRoutes.dashboard);
+        history.push(appRoutes.dashboard);
         setVisibility(false);
     };
 
     const onSongsLinkClick = () => {
-        history.push(config.appRoutes.songs);
+        history.push(appRoutes.songs);
         setVisibility(false);
     };
 
     const onCollectionsLinkClick = () => {
-        history.push(config.appRoutes.collections);
+        history.push(appRoutes.collections);
         setVisibility(false);
     };
 
     const onEditorLinkClick = () => {
-        history.push(config.appRoutes.editor);
+        history.push(appRoutes.editor);
         setVisibility(false);
     };
 

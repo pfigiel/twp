@@ -1,4 +1,3 @@
-import config from "config";
 import LandingPage from "features/landingPage/components/LandingPage";
 import Dashboard from "features/routing/components/Pages/Dashboard";
 import PrivacyPolicy from "features/routing/components/Pages/PrivacyPolicy";
@@ -11,49 +10,63 @@ import SongsList from "features/routing/components/Pages/SongsList";
 import { AppRoute } from "features/routing/types";
 import React from "react";
 
-const routes: AppRoute[] = [
+export const appRoutes = {
+    dashboard: "/dashboard",
+    landingPage: "/",
+    collections: "/collections",
+    editor: "/editor",
+    privacyPolicy: "/privacy-policy",
+    regulations: "/regulations",
+    signIn: "/sign-in",
+    signOut: "/sign-out",
+    signUp: "/sign-up",
+    songs: "/songs",
+    songCreator: "/song-creator",
+};
+
+export const routes: AppRoute[] = [
     {
-        path: config.appRoutes.dashboard,
+        path: appRoutes.dashboard,
         component: <Dashboard />,
         exact: true,
     },
     {
-        path: config.appRoutes.landingPage,
+        path: appRoutes.landingPage,
         component: <LandingPage />,
         exact: true,
     },
     {
-        path: config.appRoutes.privacyPolicy,
+        path: appRoutes.privacyPolicy,
         component: <PrivacyPolicy />,
         exact: true,
     },
     {
-        path: config.appRoutes.regulations,
+        path: appRoutes.regulations,
         component: <Regulations />,
         exact: true,
     },
     {
-        path: config.appRoutes.signIn,
+        path: appRoutes.signIn,
         component: <SignIn />,
         exact: true,
     },
     {
-        path: config.appRoutes.signOut,
+        path: appRoutes.signOut,
         component: <SignOut />,
         exact: true,
     },
     {
-        path: config.appRoutes.signUp,
+        path: appRoutes.signUp,
         component: <SignUp />,
         exact: true,
     },
     {
-        path: `${config.appRoutes.songs}/:id`,
+        path: `${appRoutes.songs}/:id`,
         component: <Song />,
         exact: true,
     },
     {
-        path: config.appRoutes.songs,
+        path: appRoutes.songs,
         component: <SongsList />,
         exact: true,
     },
@@ -62,5 +75,3 @@ const routes: AppRoute[] = [
         component: <div>Error</div>,
     },
 ];
-
-export default routes;

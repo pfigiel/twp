@@ -1,12 +1,12 @@
 import landingPageBackground from "assets/images/landingPageBackground.jpg";
 import classNames from "classnames";
-import config from "config";
 import Button from "features/common/components/Button";
 import Tile from "features/common/components/Tile";
 import { getTranslatedMessage } from "features/common/translations";
 import { Locale } from "features/common/types";
 import messages from "features/landingPage/translations";
 import Footer from "features/layout/components/Footer";
+import { appRoutes } from "features/routing/constants/routes";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router-dom";
 import { loremIpsum } from "tests/utils";
@@ -54,7 +54,7 @@ const LandingPage = ({ "data-testid": testId = "landing-page", locale, setLocale
                             data-testid={`${testId}__go-to-dashboard-button`}
                             className={styles["landing-page__button"]}
                             variant="secondary"
-                            onClick={() => history.push(config.appRoutes.dashboard)}>
+                            onClick={() => history.push(appRoutes.dashboard)}>
                             {getTranslatedMessage(messages.goToDashboard, intl)}
                         </Button>
                     </div>

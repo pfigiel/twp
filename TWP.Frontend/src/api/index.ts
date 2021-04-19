@@ -1,8 +1,8 @@
 import axios, { AxiosResponse, CancelToken } from "axios";
-import config from "config";
+import { apiRoutes } from "./constants";
 import { appendAuthHeaderInterceptor, handleCancelErrorInterceptor, refreshTokenInterceptor } from "./interceptors";
 
-const instance = axios.create({ baseURL: config.apiRoutes.base });
+const instance = axios.create({ baseURL: apiRoutes.base });
 
 instance.interceptors.request.use(appendAuthHeaderInterceptor);
 instance.interceptors.response.use.apply(instance.interceptors.response, refreshTokenInterceptor(instance));

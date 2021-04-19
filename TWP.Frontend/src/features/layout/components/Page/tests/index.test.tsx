@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import config from "config";
+import { appRoutes } from "features/routing/constants/routes";
 import { useCurrentRoute } from "features/routing/hooks";
 import { Fragment } from "react";
 import { withIntlProvider, withReduxProvider } from "tests/utils";
@@ -26,7 +26,7 @@ describe("layout", () => {
 
             it("Should render page and children when current route is other than landing page.", () => {
                 // given
-                mocked(useCurrentRoute).mockReturnValue(config.appRoutes.dashboard);
+                mocked(useCurrentRoute).mockReturnValue(appRoutes.dashboard);
 
                 // when
                 const { getByTestId } = renderComponent({ children });
@@ -38,7 +38,7 @@ describe("layout", () => {
 
             it("Should only render children when current route is landing page.", () => {
                 // given
-                mocked(useCurrentRoute).mockReturnValue(config.appRoutes.landingPage);
+                mocked(useCurrentRoute).mockReturnValue(appRoutes.landingPage);
 
                 // when
                 const { getByTestId, queryByTestId } = renderComponent({ children });

@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import config from "config";
 import { Locale } from "features/common/types";
+import { appRoutes } from "features/routing/constants/routes";
 import each from "jest-each";
 import { useHistory } from "react-router-dom";
 import { fireClickEvent, withIntlProvider } from "tests/utils";
@@ -58,7 +58,7 @@ describe("landingPage", () => {
                 fireClickEvent(getByTestId(`${testId}__go-to-dashboard-button`));
 
                 // then
-                expect(push).toHaveBeenCalledWith(config.appRoutes.dashboard);
+                expect(push).toHaveBeenCalledWith(appRoutes.dashboard);
             });
         });
     });

@@ -1,7 +1,6 @@
 import { useCreateCancelToken } from "api/hooks";
 import { ApiError } from "api/types";
 import { CancelToken } from "axios";
-import config from "config";
 import Button from "features/common/components/Button";
 import Input from "features/common/components/Input";
 import { getTranslatedMessage } from "features/common/translations";
@@ -9,6 +8,7 @@ import { createBemGenerator } from "features/common/utils";
 import LayoutHeaderTile from "features/layout/components/LayoutHeaderTile";
 import LayoutTile from "features/layout/components/LayoutTile";
 import { useErrorNotification, useGlobalLoader, useSuccessNotification } from "features/layout/hooks";
+import { appRoutes } from "features/routing/constants/routes";
 import { SignUpRequestDto } from "features/user/dtos";
 import messages from "features/user/translations";
 import { isEmailValid, isPasswordValid, isUsernameValid } from "features/user/validators";
@@ -171,7 +171,7 @@ const SignUp = ({
 
     useEffect(() => {
         if (signUpSuccess) {
-            history.push(config.appRoutes.signIn);
+            history.push(appRoutes.signIn);
         }
     });
 
@@ -193,7 +193,7 @@ const SignUp = ({
                         <Button
                             className={styles[bem("sign-up-button")]}
                             variant="link"
-                            onClick={() => history.push(config.appRoutes.signIn)}>
+                            onClick={() => history.push(appRoutes.signIn)}>
                             {getTranslatedMessage(messages.signUp.signIn, intl)}
                         </Button>
                     </div>
