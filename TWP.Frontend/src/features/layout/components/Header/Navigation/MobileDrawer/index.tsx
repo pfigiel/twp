@@ -5,7 +5,7 @@ import { useDebounce } from "features/common/hooks";
 import { getTranslatedMessage } from "features/common/translations";
 import { createBemGenerator } from "features/common/utils";
 import messages from "features/layout/translations";
-import { appRoutes } from "features/routing/constants/routes";
+import { appRoutes } from "features/routing/constants";
 import React from "react";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router";

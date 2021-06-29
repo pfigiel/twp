@@ -1,8 +1,7 @@
 import Tile from "features/common/components/Tile";
 import { getTranslatedMessage } from "features/common/translations";
 import messages from "features/dashboard/translations";
-import { appRoutes } from "features/routing/constants/routes";
-import React from "react";
+import { appRoutes } from "features/routing/constants";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router-dom";
 import styles from "./styles.module.scss";

@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { useDeviceClass } from "features/common/hooks";
 import { DeviceClass } from "features/common/types";
-import { appRoutes } from "features/routing/constants/routes";
+import { appRoutes } from "features/routing/constants";
 import each from "jest-each";
 import { useHistory } from "react-router-dom";
 import { fireClickEvent, withIntlProvider, withReduxProvider } from "tests/utils";

@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { appRoutes } from "features/routing/constants/routes";
+import { appRoutes } from "features/routing/constants";
 import { useCurrentRoute } from "features/routing/hooks";
 import { ReactElement } from "react";
 import styles from "./styles.module.scss";

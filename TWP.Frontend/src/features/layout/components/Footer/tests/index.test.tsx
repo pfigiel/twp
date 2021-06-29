@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { appRoutes } from "features/routing/constants/routes";
+import { appRoutes } from "features/routing/constants";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { fireClickEvent, withIntlProvider } from "tests/utils";

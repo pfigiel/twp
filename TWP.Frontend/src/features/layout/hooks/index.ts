@@ -15,23 +15,23 @@ export const useGlobalLoader = (isLoading: boolean) => {
     }, [dispatch, isLoading]);
 };
 
-export const useErrorNotification = (message: string, dispatchFlag?: boolean) => {
+export const useErrorNotification = (message: string, dispatchFlag: boolean) => {
     const dispatch = useDispatch();
     const previousDispatchFlag = usePrevious(dispatchFlag);
 
     useEffect(() => {
-        if (dispatchFlag && !previousDispatchFlag) {
+        if (dispatchFlag && previousDispatchFlag === false) {
             dispatch(pushNotification({ message, type: "error" }));
         }
     }, [dispatch, dispatchFlag, message, previousDispatchFlag]);
 };
 
-export const useSuccessNotification = (message: string, dispatchFlag?: boolean) => {
+export const useSuccessNotification = (message: string, dispatchFlag: boolean) => {
     const dispatch = useDispatch();
     const previousDispatchFlag = usePrevious(dispatchFlag);
 
     useEffect(() => {
-        if (dispatchFlag && !previousDispatchFlag) {
+        if (dispatchFlag && previousDispatchFlag === false) {
             dispatch(pushNotification({ message, type: "success" }));
         }
     }, [dispatch, dispatchFlag, message, previousDispatchFlag]);

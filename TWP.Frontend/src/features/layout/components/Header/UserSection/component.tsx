@@ -3,7 +3,7 @@ import { getTranslatedMessage } from "features/common/translations";
 import { createBemGenerator } from "features/common/utils";
 import HeaderDropdown from "features/layout/components/Header/HeaderDropdown";
 import messages from "features/layout/translations";
-import { appRoutes } from "features/routing/constants/routes";
+import { appRoutes } from "features/routing/constants";
 import { SignOutHistoryState } from "features/user/types";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router";

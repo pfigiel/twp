@@ -1,7 +1,7 @@
 import logo from "assets/images/logo.png";
 import { useDeviceClass } from "features/common/hooks";
 import { createBemGenerator } from "features/common/utils";
-import { appRoutes } from "features/routing/constants/routes";
+import { appRoutes } from "features/routing/constants";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import LoaderSection from "./LoaderSection";

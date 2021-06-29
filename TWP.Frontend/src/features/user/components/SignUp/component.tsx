@@ -8,7 +8,7 @@ import { createBemGenerator } from "features/common/utils";
 import LayoutHeaderTile from "features/layout/components/LayoutHeaderTile";
 import LayoutTile from "features/layout/components/LayoutTile";
 import { useErrorNotification, useGlobalLoader, useSuccessNotification } from "features/layout/hooks";
-import { appRoutes } from "features/routing/constants/routes";
+import { appRoutes } from "features/routing/constants";
 import { SignUpRequestDto } from "features/user/dtos";
 import messages from "features/user/translations";
 import { isEmailValid, isPasswordValid, isUsernameValid } from "features/user/validators";
@@ -49,7 +49,7 @@ const SignUp = ({
 
     useGlobalLoader(signUpLoading);
     useErrorNotification(getTranslatedMessage(messages.signUp.signUpError, intl), !!signUpError);
-    useSuccessNotification(getTranslatedMessage(messages.signUp.signUpSuccess, intl), signUpSuccess);
+    useSuccessNotification(getTranslatedMessage(messages.signUp.signUpSuccess, intl), !!signUpSuccess);
 
     const [email, setEmail] = useState<string>("");
     const [emailError, setEmailError] = useState<string>();

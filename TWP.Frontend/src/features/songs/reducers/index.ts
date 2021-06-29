@@ -4,7 +4,7 @@ import { Song, SongDetails } from "features/songs/types";
 import produce from "immer";
 import { getType } from "typesafe-actions";
 
-interface SongsState {
+export interface SongsState {
     song?: SongDetails;
     songLoading: boolean;
     songLoadingError?: ApiError;

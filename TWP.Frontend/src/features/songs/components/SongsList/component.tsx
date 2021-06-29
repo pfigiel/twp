@@ -8,7 +8,7 @@ import { getTranslatedMessage } from "features/common/translations";
 import LayoutHeaderTile from "features/layout/components/LayoutHeaderTile";
 import LayoutTile from "features/layout/components/LayoutTile";
 import { useErrorNotification, useGlobalLoader } from "features/layout/hooks";
-import { appRoutes } from "features/routing/constants/routes";
+import { appRoutes } from "features/routing/constants";
 import messages from "features/songs/translations";
 import { Song } from "features/songs/types";
 import React, { useEffect } from "react";

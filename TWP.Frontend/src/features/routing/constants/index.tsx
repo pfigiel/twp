@@ -1,5 +1,6 @@
 import LandingPage from "features/landingPage/components/LandingPage";
 import Dashboard from "features/routing/components/Pages/Dashboard";
+import Editor from "features/routing/components/Pages/Editor";
 import PrivacyPolicy from "features/routing/components/Pages/PrivacyPolicy";
 import Regulations from "features/routing/components/Pages/Regulations";
 import SignIn from "features/routing/components/Pages/SignIn";
@@ -8,13 +9,12 @@ import SignUp from "features/routing/components/Pages/SignUp";
 import Song from "features/routing/components/Pages/Song";
 import SongsList from "features/routing/components/Pages/SongsList";
 import { AppRoute } from "features/routing/types";
-import React from "react";
 
 export const appRoutes = {
-    dashboard: "/dashboard",
-    landingPage: "/",
     collections: "/collections",
+    dashboard: "/dashboard",
     editor: "/editor",
+    landingPage: "/",
     privacyPolicy: "/privacy-policy",
     regulations: "/regulations",
     signIn: "/sign-in",
@@ -28,6 +28,11 @@ export const routes: AppRoute[] = [
     {
         path: appRoutes.dashboard,
         component: <Dashboard />,
+        exact: true,
+    },
+    {
+        path: appRoutes.editor,
+        component: <Editor />,
         exact: true,
     },
     {

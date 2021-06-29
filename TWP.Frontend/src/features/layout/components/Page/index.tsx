@@ -1,7 +1,7 @@
 import Content from "features/layout/components/Content";
 import Footer from "features/layout/components/Footer";
 import Header from "features/layout/components/Header";
-import { appRoutes } from "features/routing/constants/routes";
+import { appRoutes } from "features/routing/constants";
 import { useCurrentRoute } from "features/routing/hooks";
 import React, { ReactElement } from "react";
 

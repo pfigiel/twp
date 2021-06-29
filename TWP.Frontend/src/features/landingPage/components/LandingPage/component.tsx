@@ -6,7 +6,7 @@ import { getTranslatedMessage } from "features/common/translations";
 import { Locale } from "features/common/types";
 import messages from "features/landingPage/translations";
 import Footer from "features/layout/components/Footer";
-import { appRoutes } from "features/routing/constants/routes";
+import { appRoutes } from "features/routing/constants";
 import { useIntl } from "react-intl";
 import { useHistory } from "react-router-dom";
 import { loremIpsum } from "tests/utils";

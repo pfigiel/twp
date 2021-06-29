@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { appRoutes } from "features/routing/constants/routes";
+import { appRoutes } from "features/routing/constants";
 import { useCurrentRoute } from "features/routing/hooks";
 import { Fragment } from "react";
 import { withIntlProvider, withReduxProvider } from "tests/utils";

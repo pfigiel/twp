@@ -1,4 +1,4 @@
-import { routes } from "features/routing/constants/routes";
+import { routes } from "features/routing/constants";
 import { Switch, Route } from "react-router-dom";
 
 const RouterSwitch = () => (
